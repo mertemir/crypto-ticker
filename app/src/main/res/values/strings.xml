@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CryptoTicker</string>
+
+    <string name="tab_Detail">Detail</string>
+    <string name="tab_Alarm">Alarm</string>
+    <string name="tab_News">News</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

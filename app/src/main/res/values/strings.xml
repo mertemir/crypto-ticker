@@ -5,6 +5,14 @@
     <string name="tab_Alarm">Alarm</string>
     <string name="tab_News">News</string>
 
+    <string name="OPEN">Drawer_Opened</string>
+    <string name="CLOSED">Drawer_Closed</string>
+
+    <string name="API_ENDPOINT">https://apiv2.bitcoinaverage.com/indices/global/</string>
+    <string name="SOCKET_ENDPOINT">wss://apiv2.bitcoinaverage.com/</string>
+    <string name="secretKey">YjZlY2E1MDBjZWFhNDZjOTkzYjJiMGJjNGExMmE2NDUxOTRlNzA2NTA5NzY0MmNmYTJlMzcxYmJiN2FjOGYxYg</string>
+    <string name="publicKey">"MjBiNzQ2Y2Q1NjVhNDY5Y2E4YzA0M2ZlYTk4MzZmMWQ</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

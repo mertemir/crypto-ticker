@@ -26,6 +26,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
         // view model scope.
     //    creators.put(AlarmViewModel.class, () -> viewModelSubComponent.alarmViewModel());
         creators.put(DetailViewModel.class, () -> viewModelSubComponent.detailViewModel());
+        creators.put(MainActivityViewModel.class, () -> viewModelSubComponent.mainActivityViewModel());
     }
 
     @Override

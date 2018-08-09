@@ -1,7 +1,7 @@
 package com.example.basics.cryptoticker.di.components;
 
-import com.example.basics.cryptoticker.viewmodel.AlarmViewModel;
 import com.example.basics.cryptoticker.viewmodel.DetailViewModel;
+import com.example.basics.cryptoticker.viewmodel.MainActivityViewModel;
 
 import dagger.Subcomponent;
 
@@ -13,4 +13,5 @@ public interface ViewModelSubComponent {
     }
  //   AlarmViewModel alarmViewModel();
     DetailViewModel detailViewModel();
+    MainActivityViewModel mainActivityViewModel();
 }

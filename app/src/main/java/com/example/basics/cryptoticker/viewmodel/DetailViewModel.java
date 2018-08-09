@@ -6,39 +6,34 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.basics.cryptoticker.model.data.CryptoHistory;
+import com.example.basics.cryptoticker.model.data.Cryptocurrency;
+import com.example.basics.cryptoticker.model.web.BitcoinAverageRepository;
+
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.example.basics.cryptoticker.repository.data.CryptoHistory;
-import com.example.basics.cryptoticker.repository.data.Cryptocurrency;
-import com.example.basics.cryptoticker.repository.web.BitcoinAverageRepository;
-
 import java.util.List;
 
 import javax.inject.Inject;
 
 
-
 public class DetailViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Cryptocurrency> currency;
+    public static MutableLiveData<String> BitcoinPrice;
     private MutableLiveData<List<CryptoHistory>> currencyHistory;
-
 
     @Inject
     public DetailViewModel(@NonNull BitcoinAverageRepository bitcoinAverageRepository, @NonNull Application application) {
         super(application);
-
-        currency = bitcoinAverageRepository.getBitcoinUSD();
         currencyHistory = bitcoinAverageRepository.getBitcoinUsdDaily();
+        BitcoinPrice = bitcoinAverageRepository.getBitcoinUSD();
     }
 
-    public MutableLiveData<Cryptocurrency> getCurrency() {
-        return this.currency;
-    }
+    public MutableLiveData<String> getBitcoinPrice() { return this.BitcoinPrice; }
 
     public MutableLiveData<List<CryptoHistory>> getDailyCurrency() {
         return this.currencyHistory;

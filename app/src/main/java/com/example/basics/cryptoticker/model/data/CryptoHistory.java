@@ -1,6 +1,4 @@
-package com.example.basics.cryptoticker.repository.data;
-
-import java.util.Date;
+package com.example.basics.cryptoticker.model.data;
 
 public class CryptoHistory {
 

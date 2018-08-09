@@ -12,17 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.di.Injectible;
-import com.example.basics.cryptoticker.repository.data.CryptoHistory;
 import com.example.basics.cryptoticker.ui.activity.MainActivity;
 import com.example.basics.cryptoticker.viewmodel.DetailViewModel;
-import com.example.basics.cryptoticker.viewmodel.ViewModelFactory;
+import com.example.basics.cryptoticker.viewmodel.MainActivityViewModel;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
 
 
 public class DetailFragment extends Fragment implements Injectible{
@@ -40,10 +39,10 @@ public class DetailFragment extends Fragment implements Injectible{
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-    int askValue, lastValue;
-
     String TAG = this.getClass().getName();
 
+    @BindView(R.id.price_text)
+    TextView priceTV;
  //   @BindView(R.id.ask) TextView ask;
  //   @BindView(R.id.last) TextView last;
     @BindView(R.id.chart)LineChart chart;
@@ -59,12 +58,19 @@ public class DetailFragment extends Fragment implements Injectible{
 
         final DetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel.class);
 
-        viewModel.getCurrency().observe(this, cryptocurrency -> {
-
-            askValue = (int) cryptocurrency.getAsk();
-            lastValue=(int) cryptocurrency.getLast();
-
+        viewModel.getBitcoinPrice().observe(this, price ->{
+            Log.wtf("fragment ", price);
+            priceTV.setText(price);
         });
+
+/*        viewModel.getCurrency().observe(this, cryptocurrency -> {
+
+            Log.wtf("TİCKET: ", cryptocurrency);
+
+            *//*askValue = (int) cryptocurrency.getAsk();
+            lastValue=(int) cryptocurrency.getLast();*//*
+
+        });*/
 
         entries.add(new Entry(1, 1));
         entries.add(new Entry(2, 5));

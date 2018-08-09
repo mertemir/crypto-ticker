@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.repository.data;
+package com.example.basics.cryptoticker.model.data;
 
 public class Cryptocurrency {
 

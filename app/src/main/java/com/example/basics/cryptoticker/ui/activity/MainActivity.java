@@ -1,65 +1,84 @@
 package com.example.basics.cryptoticker.ui.activity;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.app.Application;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.example.basics.cryptoticker.R;
+import com.example.basics.cryptoticker.model.socket.Authentication;
+import com.example.basics.cryptoticker.model.socket.SocketConnection;
+import com.example.basics.cryptoticker.model.socket.SocketListener;
+import com.example.basics.cryptoticker.model.web.BitcoinAverageRepository;
 import com.example.basics.cryptoticker.ui.fragment.AlarmFragment;
 import com.example.basics.cryptoticker.ui.fragment.DetailFragment;
+import com.example.basics.cryptoticker.viewmodel.MainActivityViewModel;
 
 import javax.inject.Inject;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.WebSocket;
 
 public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector{
 
     @Inject
+    ViewModelProvider.Factory viewModelFactory;
+
+    @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
 
-    /**
-     * View pager.
-     */
     @BindView(R.id.container)
-    /* default */ ViewPager viewPager;
+    ViewPager viewPager;
 
-    /**
-     * The bottom navigation view.
-     */
-    @BindView(R.id.navigation)
-    /* default */ BottomNavigationView bottomNavigationView;
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView bottomNavigationView;
 
-    /**
-     * "Now Playing" resource string used for tab title.
-     */
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+
     @BindString(R.string.tab_Detail)
-    /* default */ String tabTitleDetail;
+    String tabTitleDetail;
 
-    /**
-     * "Favorites" resource string used for tab title.
-     */
     @BindString(R.string.tab_Alarm)
-    /* default */ String tabTitleAlarm;
+    String tabTitleAlarm;
 
-    /**
-     * "Settings" resource string used for tab title.
-     */
     @BindString(R.string.tab_News)
-    /* default */ String tabTitleNews;
+    String tabTitleNews;
+
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        initNavigationView();
+    }
 
     /**
      * Listener used to change the selected item in the bottom navigation view when the page is switched.
@@ -101,14 +120,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         return dispatchingAndroidInjector;
     }
 
-    // endregion
-
-    // region Private Inner Types
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     private class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         SectionsPagerAdapter(final FragmentManager fm) {
@@ -149,23 +160,25 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         }
     }
 
-    // endregion
-
-    // region Public Overrides
-
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        initNavigationView();
-    }
-
-    // endregion
-
-    // region Private Methods
 
     private void initNavigationView() {
+
+        final MainActivityViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel.class);
+        viewModel.connectSocket();
+
+        setSupportActionBar(toolbar);
+        mNavigationView.setItemIconTintList(null);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+                this,  mDrawerLayout, toolbar,
+                R.string.OPEN, R.string.CLOSED
+        );
+
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        mDrawerToggle.syncState();
+
         final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(sectionsPagerAdapter);
         viewPager.addOnPageChangeListener(onPageChangeListener);
@@ -186,6 +199,4 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
             }
         });
     }
-
-    // endregion
 }

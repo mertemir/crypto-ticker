@@ -1,7 +1,7 @@
-package com.example.basics.cryptoticker.repository.web;
+package com.example.basics.cryptoticker.model.web;
 
-import com.example.basics.cryptoticker.repository.data.CryptoHistory;
-import com.example.basics.cryptoticker.repository.data.Cryptocurrency;
+import com.example.basics.cryptoticker.model.data.CryptoHistory;
+import com.example.basics.cryptoticker.model.data.Cryptocurrency;
 
 import java.util.List;
 

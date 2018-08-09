@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 
 import com.example.basics.cryptoticker.di.AppInjector;
-import com.example.basics.cryptoticker.di.components.AppComponent;
-import com.example.basics.cryptoticker.di.components.DaggerAppComponent;
-import com.example.basics.cryptoticker.di.modules.AppModule;
 
 import javax.inject.Inject;
 

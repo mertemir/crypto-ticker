@@ -1,11 +1,8 @@
 package com.example.basics.cryptoticker.ui.activity;
 
-import android.app.Application;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -17,14 +14,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.example.basics.cryptoticker.R;
-import com.example.basics.cryptoticker.model.socket.Authentication;
-import com.example.basics.cryptoticker.model.socket.SocketConnection;
-import com.example.basics.cryptoticker.model.socket.SocketListener;
-import com.example.basics.cryptoticker.model.web.BitcoinAverageRepository;
 import com.example.basics.cryptoticker.ui.fragment.AlarmFragment;
 import com.example.basics.cryptoticker.ui.fragment.DetailFragment;
 import com.example.basics.cryptoticker.viewmodel.MainActivityViewModel;
@@ -36,9 +28,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.WebSocket;
 
 public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector{
 
@@ -62,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
+
+    @BindView(R.id.drawer_list)
+    ListView listView;
 
     @BindString(R.string.tab_Detail)
     String tabTitleDetail;
@@ -164,7 +156,8 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     private void initNavigationView() {
 
         final MainActivityViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel.class);
-        viewModel.connectSocket();
+    //    viewModel.connectSocket();
+        viewModel.populateDrawerList(listView);
 
         setSupportActionBar(toolbar);
         mNavigationView.setItemIconTintList(null);

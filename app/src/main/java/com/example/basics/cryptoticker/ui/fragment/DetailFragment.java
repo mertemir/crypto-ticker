@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.di.Injectible;
 import com.example.basics.cryptoticker.ui.activity.MainActivity;
@@ -58,7 +59,7 @@ public class DetailFragment extends Fragment implements Injectible{
 
         final DetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel.class);
 
-        viewModel.getBitcoinPrice().observe(this, price ->{
+        App.bitcoinPrice.observe(this, price ->{
             Log.wtf("fragment ", price);
             priceTV.setText(price);
         });

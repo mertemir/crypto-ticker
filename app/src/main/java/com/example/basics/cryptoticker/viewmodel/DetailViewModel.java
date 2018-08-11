@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.model.data.CryptoHistory;
 import com.example.basics.cryptoticker.model.data.Cryptocurrency;
 import com.example.basics.cryptoticker.model.web.BitcoinAverageRepository;
@@ -22,18 +23,13 @@ import javax.inject.Inject;
 
 
 public class DetailViewModel extends AndroidViewModel {
-
-    public static MutableLiveData<String> BitcoinPrice;
     private MutableLiveData<List<CryptoHistory>> currencyHistory;
 
     @Inject
     public DetailViewModel(@NonNull BitcoinAverageRepository bitcoinAverageRepository, @NonNull Application application) {
         super(application);
         currencyHistory = bitcoinAverageRepository.getBitcoinUsdDaily();
-        BitcoinPrice = bitcoinAverageRepository.getBitcoinUSD();
     }
-
-    public MutableLiveData<String> getBitcoinPrice() { return this.BitcoinPrice; }
 
     public MutableLiveData<List<CryptoHistory>> getDailyCurrency() {
         return this.currencyHistory;

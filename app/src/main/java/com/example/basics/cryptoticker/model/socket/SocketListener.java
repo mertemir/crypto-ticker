@@ -2,7 +2,7 @@ package com.example.basics.cryptoticker.model.socket;
 
 import android.util.Log;
 
-import com.example.basics.cryptoticker.viewmodel.DetailViewModel;
+import com.example.basics.cryptoticker.App;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -24,7 +24,8 @@ public class SocketListener extends WebSocketListener{
         if(!"OK".equals(data.toString().substring(1, 3))) {
             JsonObject dataObject = data.getAsJsonObject();
             String result = dataObject.get("ask").getAsString();
-            DetailViewModel.BitcoinPrice.postValue(result);
+            Log.wtf("Socket geliyor ", result);
+            App.bitcoinPrice.postValue(result);
         }
 
     }

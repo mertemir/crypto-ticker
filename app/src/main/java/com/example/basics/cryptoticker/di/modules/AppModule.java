@@ -12,6 +12,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -36,9 +38,10 @@ public class AppModule {
     }
 
     @Singleton @Provides
-    IBitcoinAverageApi provideIBitcoinAverageApi(Gson gson) {
+    IBitcoinAverageApi provideIBitcoinAverageApi(Gson gson, OkHttpClient client) {
 
         final Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
                 .baseUrl(API_ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -47,9 +50,10 @@ public class AppModule {
     }
 
     @Singleton @Provides
-    IBitcoinAverageSocketApi provideIBitcoinAverageSocketApi(Gson gson){
+    IBitcoinAverageSocketApi provideIBitcoinAverageSocketApi(Gson gson, OkHttpClient client){
 
         final Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
                 .baseUrl(TICKET_ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -57,9 +61,14 @@ public class AppModule {
         return retrofit.create(IBitcoinAverageSocketApi.class);
     }
 
+    @Singleton
     @Provides
     OkHttpClient provideOkHttpClient(){
-        return new OkHttpClient().newBuilder().build();
+        return new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
     }
 
     @Singleton @Provides

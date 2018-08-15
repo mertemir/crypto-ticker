@@ -1,93 +1,574 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.DetailFragment">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    tools:context=".ui.fragment.DetailFragment"
+    android:background="@color/colorPrimaryDark">
 
         <RelativeLayout
+            android:id="@+id/chartLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimary">
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_margin="5dp"
             android:layout_height="200dp" />
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_view"
-            android:layout_below="@+id/chart"
-            app:cardBackgroundColor="@color/colorPrimaryDark"
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-                <TextView
-                    android:id="@+id/price_text"
-                    android:textColor="@color/textColor"
-                    android:layout_marginTop="20dp"
-                    android:textSize="20dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/ask_text"
-                    android:textColor="@color/textColor"
-                    android:layout_below="@+id/price_text"
-                    android:layout_marginTop="15dp"
-                    android:textSize="20dp"
-                    android:text="Ask"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/ask"
-                    android:textColor="@color/textColor"
-                    android:layout_below="@+id/ask_text"
-                    android:textSize="20dp"
-                    android:text="5900$"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/bid_text"
-                    android:textColor="@color/textColor"
-                    android:layout_below="@+id/price_text"
-                    android:layout_toRightOf="@+id/ask_text"
-
-                    android:layout_marginTop="15dp"
-                    android:textSize="20dp"
-                    android:text="Bid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/bid"
-                    android:textColor="@color/textColor"
-                    android:layout_below="@+id/bid_text"
-                    android:layout_toRightOf="@+id/ask"
-
-                    android:textSize="20dp"
-                    android:text="5850$"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
-    </ScrollView>
+        <RelativeLayout
+            android:id="@+id/price_layout"
+            android:layout_below="@+id/chartLayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginTop="5dp">
 
-</FrameLayout>
+                <LinearLayout
+                    android:id="@+id/icon_name"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="0dp"
+                        android:src="@drawable/btc"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="BTC"
+                        android:textColor="@color/darkFont"
+                        android:layout_gravity="center"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/price"
+                    android:layout_toEndOf="@+id/icon_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:text="Price"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_height="0dp"
+                        android:textColor="@color/lightFont"
+                        android:textSize="16dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/price_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="9dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/Teal"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/time_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="12dp"
+                        android:textColor="@color/darkFont"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/day_week_month"
+                    android:layout_toEndOf="@+id/price"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:layout_centerVertical="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_weight="10">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:background="@drawable/light_border"
+                            android:text="Day"/>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:background="@drawable/light_border"
+                            android:text="Week"/>
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:background="@drawable/light_border"
+                            android:text="Month"/>
+
+
+                </LinearLayout>
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical"
+                     android:background="@color/colorPrimaryDark"
+                     android:layout_weight="15">
+
+                     <TextView
+                         android:layout_weight="1"
+                         android:text="Open"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:textColor="@color/lightFont"
+                         android:background="@drawable/light_border"
+                         android:textAlignment="center"/>
+
+                     <TextView
+                         android:id="@+id/openDay_text"
+                         android:layout_weight="1"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:textAlignment="center"
+                         android:textColor="@color/darkFont"
+                         android:background="@drawable/light_border"/>
+
+                     <TextView
+                         android:id="@+id/openWeek_text"
+                         android:layout_weight="1"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:textAlignment="center"
+                         android:textColor="@color/darkFont"
+                         android:background="@drawable/light_border"/>
+
+                     <TextView
+                         android:id="@+id/openMonth_text"
+                         android:layout_weight="1"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:textAlignment="center"
+                         android:textColor="@color/darkFont"
+                         android:background="@drawable/light_border"/>
+
+                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_weight="15">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:text="Average"
+                        android:layout_width="match_parent"
+                        android:textColor="@color/lightFont"
+                        android:background="@drawable/light_border"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/averageDay_text"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_border"
+                        android:textAlignment="center"
+                        android:textColor="@color/darkFont"/>
+
+                    <TextView
+                        android:id="@+id/averageWeek_text"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:background="@drawable/light_border"
+                        android:textColor="@color/darkFont"/>
+
+                    <TextView
+                        android:id="@+id/averageMonth_text"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/light_border"
+                        android:textColor="@color/darkFont"
+                        android:textAlignment="center"/>
+
+                </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ask_bid"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/price_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@color/colorPrimary">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/darkFont"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:text="Ask"/>
+
+                        <TextView
+                            android:id="@+id/ask_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/Teal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="0.5dp"
+                        android:layout_marginLeft="1dp"
+                        android:orientation="vertical"
+                        android:background="@color/colorPrimary">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/darkFont"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:text="Bid"/>
+
+                        <TextView
+                            android:id="@+id/bid_text"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/Teal"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="0.5dp"
+                        android:layout_marginRight="1dp"
+                        android:background="@color/colorPrimary">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/darkFont"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:text="Low"/>
+
+                        <TextView
+                            android:id="@+id/low_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/redFont" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="@color/colorPrimary">
+
+                        <TextView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/darkFont"
+                            android:layout_marginTop="5dp"
+                            android:text="High"/>
+
+                        <TextView
+                            android:id="@+id/high_text"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/greenFont"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/ask_bid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/round_border"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:text="Hourly Change"/>
+
+                        <TextView
+                            android:id="@+id/hourlyChangePrice_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                        <TextView
+                            android:id="@+id/hourlyChangePercent_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/round_border"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:text="Daily Change"/>
+
+                        <TextView
+                            android:id="@+id/dailyChangePrice_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                        <TextView
+                            android:id="@+id/dailyChangePercent_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/round_border"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:text="Weekly Change"/>
+
+                        <TextView
+                            android:id="@+id/weeklyChangePrice_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                        <TextView
+                            android:id="@+id/weeklyChangePercent_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/round_border"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:text="Monthly Change"/>
+
+                        <TextView
+                            android:id="@+id/monthlyChangePrice_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                        <TextView
+                            android:id="@+id/monthlyChangePercent_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/round_border"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/lightFont"
+                            android:text="Yearly Change"/>
+
+                        <TextView
+                            android:id="@+id/yearlyChangePrice_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                        <TextView
+                            android:id="@+id/yearlyChangePercent_text"
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/greenFont"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+</RelativeLayout>

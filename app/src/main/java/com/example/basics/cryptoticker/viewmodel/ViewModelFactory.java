@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.v4.util.ArrayMap;
 
-import com.example.basics.cryptoticker.di.components.ViewModelSubComponent;
+import com.example.basics.cryptoticker.di.modules.ViewModelSubComponent;
 
 import java.util.Map;
 import java.util.concurrent.Callable;

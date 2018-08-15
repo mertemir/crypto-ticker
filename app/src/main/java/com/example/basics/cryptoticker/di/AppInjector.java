@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.di.components.DaggerAppComponent;
+import com.example.basics.cryptoticker.di.qualifiers.Injectible;
 
 import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;

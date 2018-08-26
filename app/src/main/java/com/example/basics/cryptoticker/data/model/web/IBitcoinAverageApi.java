@@ -1,4 +1,8 @@
-package com.example.basics.cryptoticker.data.model;
+package com.example.basics.cryptoticker.data.model.web;
+
+import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
+import com.example.basics.cryptoticker.data.model.pojo.Cryptocurrency;
+import com.example.basics.cryptoticker.data.model.pojo.Ticket;
 
 import java.util.List;
 

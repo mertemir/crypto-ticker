@@ -1,7 +1,7 @@
 package com.example.basics.cryptoticker.data;
 
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
-import com.example.basics.cryptoticker.data.model.Cryptocurrency;
+import com.example.basics.cryptoticker.data.model.pojo.Cryptocurrency;
 import com.google.gson.JsonObject;
 
 public class Parser {
@@ -10,23 +10,23 @@ public class Parser {
 
         CryptoEntity cryptocurrency = new CryptoEntity();
 
-        cryptocurrency.setName("Bitcoin");
+        cryptocurrency.setName("bitcoin");
 
-        cryptocurrency.setAsk(result.get("ask").getAsDouble());
-        cryptocurrency.setBid(result.get("bid").getAsDouble());
-        cryptocurrency.setLast(result.get("last").getAsDouble());
-        cryptocurrency.setHigh(result.get("high").getAsDouble());
-        cryptocurrency.setLow(result.get("low").getAsDouble());
+        cryptocurrency.setAsk(result.get("ask").getAsString());
+        cryptocurrency.setBid(result.get("bid").getAsString());
+        cryptocurrency.setLast(result.get("last").getAsString());
+        cryptocurrency.setHigh(result.get("high").getAsString());
+        cryptocurrency.setLow(result.get("low").getAsString());
 
         cryptocurrency.setDisplayTimestamp(result.get("display_timestamp").getAsString());
 
-        cryptocurrency.setOpenDay(result.getAsJsonObject("open").get("day").getAsDouble());
-        cryptocurrency.setOpenWeek(result.getAsJsonObject("open").get("week").getAsDouble());
-        cryptocurrency.setOpenMonth(result.getAsJsonObject("open").get("month").getAsDouble());
+        cryptocurrency.setOpenDay(result.getAsJsonObject("open").get("day").getAsString());
+        cryptocurrency.setOpenWeek(result.getAsJsonObject("open").get("week").getAsString());
+        cryptocurrency.setOpenMonth(result.getAsJsonObject("open").get("month").getAsString());
 
-        cryptocurrency.setAverageDay(result.getAsJsonObject("averages").get("day").getAsDouble());
-        cryptocurrency.setAverageWeek(result.getAsJsonObject("averages").get("week").getAsDouble());
-        cryptocurrency.setAverageMonth(result.getAsJsonObject("averages").get("month").getAsDouble());
+        cryptocurrency.setAverageDay(result.getAsJsonObject("averages").get("day").getAsString());
+        cryptocurrency.setAverageWeek(result.getAsJsonObject("averages").get("week").getAsString());
+        cryptocurrency.setAverageMonth(result.getAsJsonObject("averages").get("month").getAsString());
 
         cryptocurrency.setChangePercentHour(result.getAsJsonObject("changes").getAsJsonObject("percent").get("hour").getAsString());
         cryptocurrency.setChangePercentDay(result.getAsJsonObject("changes").getAsJsonObject("percent").get("day").getAsString());
@@ -47,23 +47,23 @@ public class Parser {
 
         CryptoEntity cryptocurrency = new CryptoEntity();
 
-        cryptocurrency.setName("Bitcoin");
+        cryptocurrency.setName("bitcoin");
 
-        cryptocurrency.setAsk(result.getAsk());
-        cryptocurrency.setBid(result.getBid());
-        cryptocurrency.setLast(result.getLast());
-        cryptocurrency.setHigh(result.getHigh());
-        cryptocurrency.setLow(result.getLow());
+        cryptocurrency.setAsk(result.getAsk().toString());
+        cryptocurrency.setBid(result.getBid().toString());
+        cryptocurrency.setLast(result.getLast().toString());
+        cryptocurrency.setHigh(result.getHigh().toString());
+        cryptocurrency.setLow(result.getLow().toString());
 
         cryptocurrency.setDisplayTimestamp(result.getDisplayTimestamp());
 
-        cryptocurrency.setOpenDay(result.getOpen().getDay());
-        cryptocurrency.setOpenWeek(result.getOpen().getWeek());
-        cryptocurrency.setOpenMonth(result.getOpen().getMonth());
+        cryptocurrency.setOpenDay(result.getOpen().getDay().toString());
+        cryptocurrency.setOpenWeek(result.getOpen().getWeek().toString());
+        cryptocurrency.setOpenMonth(result.getOpen().getMonth().toString());
 
-        cryptocurrency.setAverageDay(result.getAverages().getDay());
-        cryptocurrency.setAverageWeek(result.getAverages().getWeek());
-        cryptocurrency.setAverageMonth(result.getAverages().getMonth());
+        cryptocurrency.setAverageDay(result.getAverages().getDay().toString());
+        cryptocurrency.setAverageWeek(result.getAverages().getWeek().toString());
+        cryptocurrency.setAverageMonth(result.getAverages().getMonth().toString());
 
         cryptocurrency.setChangePercentHour(result.getChanges().getPercent().getHour().toString());
         cryptocurrency.setChangePercentDay(result.getChanges().getPercent().getDay().toString());

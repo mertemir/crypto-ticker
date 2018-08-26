@@ -2,12 +2,12 @@ package com.example.basics.cryptoticker.data.socket;
 
 import android.util.Log;
 
+import com.example.basics.cryptoticker.AlarmChecker;
 import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.data.Parser;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 
 import okhttp3.Response;
 import okhttp3.WebSocket;
@@ -26,6 +26,7 @@ public class SocketListener extends WebSocketListener{
         if(!"OK".equals(data.toString().substring(1, 3))) {
             JsonObject dataObject = data.getAsJsonObject();
             App.cryptoDatabase.cryptoDao().insertCoin(Parser.getCryptocurrencyFromJsonObject(dataObject));
+            AlarmChecker.checkAlarms(App.context);
         }
     }
 
@@ -39,7 +40,6 @@ public class SocketListener extends WebSocketListener{
     }
 
     public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-        Log.wtf("Error ", "" + t.getMessage());
     }
 
 }

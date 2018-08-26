@@ -11,7 +11,111 @@ public class CryptoEntity {
     @NonNull
     private String name;
 
-    private Double ask;
+    private String ask;
+
+    public String getAsk() {
+        return ask;
+    }
+
+    public void setAsk(String ask) {
+        this.ask = ask;
+    }
+
+    public String getBid() {
+        return bid;
+    }
+
+    public void setBid(String bid) {
+        this.bid = bid;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
+
+    public String getHigh() {
+        return high;
+    }
+
+    public void setHigh(String high) {
+        this.high = high;
+    }
+
+    public String getLow() {
+        return low;
+    }
+
+    public void setLow(String low) {
+        this.low = low;
+    }
+
+    public String getOpenDay() {
+        return openDay;
+    }
+
+    public void setOpenDay(String openDay) {
+        this.openDay = openDay;
+    }
+
+    public String getOpenWeek() {
+        return openWeek;
+    }
+
+    public void setOpenWeek(String openWeek) {
+        this.openWeek = openWeek;
+    }
+
+    public String getOpenMonth() {
+        return openMonth;
+    }
+
+    public void setOpenMonth(String openMonth) {
+        this.openMonth = openMonth;
+    }
+
+    public String getAverageDay() {
+        return averageDay;
+    }
+
+    public void setAverageDay(String averageDay) {
+        this.averageDay = averageDay;
+    }
+
+    public String getAverageWeek() {
+        return averageWeek;
+    }
+
+    public void setAverageWeek(String averageWeek) {
+        this.averageWeek = averageWeek;
+    }
+
+    public String getAverageMonth() {
+        return averageMonth;
+    }
+
+    public void setAverageMonth(String averageMonth) {
+        this.averageMonth = averageMonth;
+    }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public void setVolume(String volume) {
+        this.volume = volume;
+    }
+
+    public String getVolumePercent() {
+        return volumePercent;
+    }
+
+    public void setVolumePercent(String volumePercent) {
+        this.volumePercent = volumePercent;
+    }
 
     public String getName() {
         return name;
@@ -19,110 +123,6 @@ public class CryptoEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Double getAsk() {
-        return ask;
-    }
-
-    public void setAsk(Double ask) {
-        this.ask = ask;
-    }
-
-    public Double getBid() {
-        return bid;
-    }
-
-    public void setBid(Double bid) {
-        this.bid = bid;
-    }
-
-    public Double getLast() {
-        return last;
-    }
-
-    public void setLast(Double last) {
-        this.last = last;
-    }
-
-    public Double getHigh() {
-        return high;
-    }
-
-    public void setHigh(Double high) {
-        this.high = high;
-    }
-
-    public Double getLow() {
-        return low;
-    }
-
-    public void setLow(Double low) {
-        this.low = low;
-    }
-
-    public Double getOpenDay() {
-        return openDay;
-    }
-
-    public void setOpenDay(Double openDay) {
-        this.openDay = openDay;
-    }
-
-    public Double getOpenWeek() {
-        return openWeek;
-    }
-
-    public void setOpenWeek(Double openWeek) {
-        this.openWeek = openWeek;
-    }
-
-    public Double getOpenMonth() {
-        return openMonth;
-    }
-
-    public void setOpenMonth(Double openMonth) {
-        this.openMonth = openMonth;
-    }
-
-    public Double getAverageDay() {
-        return averageDay;
-    }
-
-    public void setAverageDay(Double averageDay) {
-        this.averageDay = averageDay;
-    }
-
-    public Double getAverageWeek() {
-        return averageWeek;
-    }
-
-    public void setAverageWeek(Double averageWeek) {
-        this.averageWeek = averageWeek;
-    }
-
-    public Double getAverageMonth() {
-        return averageMonth;
-    }
-
-    public void setAverageMonth(Double averageMonth) {
-        this.averageMonth = averageMonth;
-    }
-
-    public Double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Double volume) {
-        this.volume = volume;
-    }
-
-    public Double getVolumePercent() {
-        return volumePercent;
-    }
-
-    public void setVolumePercent(Double volumePercent) {
-        this.volumePercent = volumePercent;
     }
 
     public Integer getTimestamp() {
@@ -157,17 +157,17 @@ public class CryptoEntity {
         this.time = time;
     }
 
-    private Double bid;
-    private Double last;
-    private Double high;
-    private Double low;
-    private Double openDay;
-    private Double openWeek;
-    private Double openMonth;
-    private Double averageDay;
-    private Double averageWeek;
-    private Double averageMonth;
-    private Double volume;
+    private String bid;
+    private String last;
+    private String high;
+    private String low;
+    private String openDay;
+    private String openWeek;
+    private String openMonth;
+    private String averageDay;
+    private String averageWeek;
+    private String averageMonth;
+    private String volume;
 
     private String changePriceHour;
     private String changePriceDay;
@@ -261,7 +261,7 @@ public class CryptoEntity {
     private String changePercentMonth;
     private String changePercentYear;
 
-    private Double volumePercent;
+    private String volumePercent;
     private Integer timestamp;
     private String displayTimestamp;
     private Boolean success;

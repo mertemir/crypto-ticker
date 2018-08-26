@@ -1,17 +1,13 @@
 package com.example.basics.cryptoticker.di.modules;
 
-import android.app.Application;
+import android.app.NotificationManager;
 import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
-import com.example.basics.cryptoticker.App;
-import com.example.basics.cryptoticker.data.db.CryptoDatabase;
-import com.example.basics.cryptoticker.data.db.dao.CryptoDao;
+import com.example.basics.cryptoticker.data.model.web.IBitcoinAverageApi;
+import com.example.basics.cryptoticker.data.model.web.NewsApi;
 import com.example.basics.cryptoticker.data.socket.Authentication;
 import com.example.basics.cryptoticker.data.socket.SocketListener;
-import com.example.basics.cryptoticker.data.model.IBitcoinAverageApi;
-import com.example.basics.cryptoticker.di.qualifiers.ApplicationContext;
 import com.example.basics.cryptoticker.viewmodel.ViewModelFactory;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -28,7 +24,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(subcomponents = ViewModelSubComponent.class)
 public class AppModule {
 
-    private static final String API_ENDPOINT = "https://apiv2.bitcoinaverage.com/";
+    private static final String BTC_API_ENDPOINT = "https://apiv2.bitcoinaverage.com/";
+    private static final String NEWS_API_ENDPOINT = "https://newsapi.org/v2/";
 
     @Provides
     Authentication provideAuthentication(){ return new Authentication(); }
@@ -43,16 +40,31 @@ public class AppModule {
                 .create();
     }
 
+    @Provides
+    NotificationManager provideNotificationManager(Context context){ return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE); }
+
     @Singleton @Provides
     IBitcoinAverageApi provideIBitcoinAverageApi(Gson gson, OkHttpClient client) {
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(API_ENDPOINT)
+                .baseUrl(BTC_API_ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         return retrofit.create(IBitcoinAverageApi.class);
+    }
+
+    @Singleton @Provides
+    NewsApi provideNewsApi(Gson gson, OkHttpClient client) {
+
+        final Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(NEWS_API_ENDPOINT)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        return retrofit.create(NewsApi.class);
     }
 
     @Singleton

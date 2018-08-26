@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".data.socket.SocketBroadcastReceiver"
+            android:process=":remote">
+        </receiver>
+        
         <service android:name=".data.socket.SocketService" />
     </application>
 

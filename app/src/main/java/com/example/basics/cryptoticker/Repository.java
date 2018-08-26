@@ -5,13 +5,16 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.basics.cryptoticker.data.db.dao.CryptoDao;
-import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
-import com.example.basics.cryptoticker.data.model.CryptoHistory;
-import com.example.basics.cryptoticker.data.model.Cryptocurrency;
-import com.example.basics.cryptoticker.data.model.IBitcoinAverageApi;
 import com.example.basics.cryptoticker.data.Parser;
+import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
+import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
+import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
+import com.example.basics.cryptoticker.data.model.pojo.Cryptocurrency;
+import com.example.basics.cryptoticker.data.model.pojo.News;
+import com.example.basics.cryptoticker.data.model.web.IBitcoinAverageApi;
+import com.example.basics.cryptoticker.data.model.web.NewsApi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,23 +28,32 @@ import retrofit2.Response;
 public class Repository {
 
     private final IBitcoinAverageApi bitcoinAverageApi;
+    private final NewsApi newsApi;
 
     @Inject
-    public Repository(@NonNull IBitcoinAverageApi bitcoinAverageApi) {
+    public Repository(@NonNull IBitcoinAverageApi bitcoinAverageApi, @NonNull NewsApi newsApi) {
         this.bitcoinAverageApi = bitcoinAverageApi;
+        this.newsApi = newsApi;
     }
 
     public LiveData<CryptoEntity> getBitcoinUSD() { return App.cryptoDatabase.cryptoDao().getCoin(); }
 
-    @NonNull
-    public MutableLiveData<List<CryptoHistory>> getBitcoinUsdDaily() {
+    public LiveData<List<AlarmEntity>> getActiveAlarms() { return App.cryptoDatabase.alarmDao().getAlarms(); }
+
+    public void insertAlarm(AlarmEntity alarmEntity) { App.cryptoDatabase.alarmDao().insertAlarm(alarmEntity); }
+
+    private void insertCoinData(CryptoEntity cryptoEntity) { App.cryptoDatabase.cryptoDao().insertCoin(cryptoEntity); }
+
+    public LiveData<List<CryptoHistory>> getBitcoinUsdDaily() {
 
         final MutableLiveData<List<CryptoHistory>> bitcoinDaily = new MutableLiveData<>();
 
         bitcoinAverageApi.getCoinUsdDaily("global","BTC").enqueue(new Callback<List<CryptoHistory>>() {
 
             @Override
-            public void onResponse(Call<List<CryptoHistory>> call, Response<List<CryptoHistory>> response) { bitcoinDaily.setValue(response.body()); }
+            public void onResponse(Call<List<CryptoHistory>> call, Response<List<CryptoHistory>> response) {
+                bitcoinDaily.setValue(response.body());
+            }
 
             @Override
             public void onFailure(Call<List<CryptoHistory>> call, Throwable t) { }
@@ -49,11 +61,11 @@ public class Repository {
         return bitcoinDaily;
     }
 
-    public void getCoin(String symbol_set,String coinName){
+    public void getCoinData(String symbol_set,String coinName){
         bitcoinAverageApi.getCoinUsd(symbol_set,coinName).enqueue(new Callback<Cryptocurrency>() {
             @Override
             public void onResponse(Call<Cryptocurrency> call, Response<Cryptocurrency> response) {
-               App.cryptoDatabase.cryptoDao().insertCoin(Parser.getCryptocurrencyEntityFromCryptocurrency(response.body()));
+                insertCoinData(Parser.getCryptocurrencyEntityFromCryptocurrency(response.body()));
             }
 
             @Override
@@ -61,5 +73,22 @@ public class Repository {
 
             }
         });
+    }
+
+    public MutableLiveData<List<News.Article>> getNewsData(){
+        final MutableLiveData<List<News.Article>> news = new MutableLiveData<>();
+
+        newsApi.getNews().enqueue(new Callback<News>() {
+            @Override
+            public void onResponse(Call<News> call, Response<News> response) {
+                news.setValue(response.body().articles);
+            }
+
+            @Override
+            public void onFailure(Call<News> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+        return news;
     }
 }

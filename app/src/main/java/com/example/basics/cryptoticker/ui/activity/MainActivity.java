@@ -1,7 +1,6 @@
 package com.example.basics.cryptoticker.ui.activity;
 
 import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.ui.fragment.AlarmFragment;
 import com.example.basics.cryptoticker.ui.fragment.DetailFragment;
-import com.example.basics.cryptoticker.viewmodel.MainActivityViewModel;
+import com.example.basics.cryptoticker.ui.fragment.NewsFragment;
 
 import javax.inject.Inject;
 
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
                 case 1:
                     return new AlarmFragment();
                 case 2:
-                    return new AlarmFragment();
+                    return new NewsFragment();
                 default:
                     return null;
             }
@@ -138,9 +137,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
 
 
     private void initNavigationView() {
-
-        final MainActivityViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel.class);
-
         final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(sectionsPagerAdapter);
         viewPager.addOnPageChangeListener(onPageChangeListener);

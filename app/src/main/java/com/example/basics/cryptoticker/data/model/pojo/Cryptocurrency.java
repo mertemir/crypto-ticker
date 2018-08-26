@@ -1,7 +1,4 @@
-package com.example.basics.cryptoticker.data.model;
-
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+package com.example.basics.cryptoticker.data.model.pojo;
 
 public class Cryptocurrency {
 

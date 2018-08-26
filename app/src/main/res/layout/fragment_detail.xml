@@ -1,574 +1,694 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.DetailFragment"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.DetailFragment">
 
-        <RelativeLayout
-            android:id="@+id/chartLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimary">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/chart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/price_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="0dp"
+            android:layout_above="@+id/chart_buttons"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toTopOf="@+id/chart_buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/chart_buttons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <RelativeLayout
-            android:id="@+id/price_layout"
-            android:layout_below="@+id/chartLayout"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@color/colorPrimary"
-            android:layout_marginTop="5dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="7.5dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_border_selected"
+                android:text="Day"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont"
+                android:textSize="10dp" />
 
-                <LinearLayout
-                    android:id="@+id/icon_name"
-                    android:layout_alignParentTop="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_centerVertical="true">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7.5dp"
+                android:layout_marginRight="7.5dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_border"
+                android:text="Week"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont"
+                android:textSize="10dp" />
 
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="0dp"
-                        android:src="@drawable/btc"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7.5dp"
+                android:layout_marginRight="7.5dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_border"
+                android:text="Month"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont"
+                android:textSize="10dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp"
-                        android:text="BTC"
-                        android:textColor="@color/darkFont"
-                        android:layout_gravity="center"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="7.5dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/round_border"
+                android:text="Year"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont"
+                android:textSize="10dp" />
 
-                </LinearLayout>
+        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/price"
-                    android:layout_toEndOf="@+id/icon_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:orientation="vertical"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_centerVertical="true">
+    </android.support.constraint.ConstraintLayout>
 
-                    <TextView
-                        android:text="Price"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:layout_height="0dp"
-                        android:textColor="@color/lightFont"
-                        android:textSize="16dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"/>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:layout_constraintBottom_toTopOf="@+id/ask_bid_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-                    <TextView
-                        android:id="@+id/price_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="9dp"
-                        android:textSize="14dp"
-                        android:textColor="@color/Teal"
-                        android:layout_gravity="center"/>
+        <LinearLayout
+            android:id="@+id/icon_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/round_border_selected"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/time_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="10dp"
-                        android:textSize="12dp"
-                        android:textColor="@color/darkFont"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:src="@drawable/btc" />
 
-                <LinearLayout
-                    android:id="@+id/day_week_month"
-                    android:layout_toEndOf="@+id/price"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:orientation="horizontal"
-                    android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="BTC"
+                android:textColor="@color/darkFont" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_weight="10">
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimary"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/icon_name"
+            android:background="@drawable/round_border_selected"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/day_week_month"
+            app:layout_constraintStart_toEndOf="@+id/icon_name"
+            app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:background="@drawable/light_border"
-                            android:text="Day"/>
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:background="@drawable/light_border"
-                            android:text="Week"/>
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:background="@drawable/light_border"
-                            android:text="Month"/>
-
-
-                </LinearLayout>
-
-                 <LinearLayout
-                     android:layout_width="wrap_content"
-                     android:layout_height="match_parent"
-                     android:orientation="vertical"
-                     android:background="@color/colorPrimaryDark"
-                     android:layout_weight="15">
-
-                     <TextView
-                         android:layout_weight="1"
-                         android:text="Open"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:textColor="@color/lightFont"
-                         android:background="@drawable/light_border"
-                         android:textAlignment="center"/>
-
-                     <TextView
-                         android:id="@+id/openDay_text"
-                         android:layout_weight="1"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:textAlignment="center"
-                         android:textColor="@color/darkFont"
-                         android:background="@drawable/light_border"/>
-
-                     <TextView
-                         android:id="@+id/openWeek_text"
-                         android:layout_weight="1"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:textAlignment="center"
-                         android:textColor="@color/darkFont"
-                         android:background="@drawable/light_border"/>
-
-                     <TextView
-                         android:id="@+id/openMonth_text"
-                         android:layout_weight="1"
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:textAlignment="center"
-                         android:textColor="@color/darkFont"
-                         android:background="@drawable/light_border"/>
-
-                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_weight="15">
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:text="Average"
-                        android:layout_width="match_parent"
-                        android:textColor="@color/lightFont"
-                        android:background="@drawable/light_border"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/averageDay_text"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/light_border"
-                        android:textAlignment="center"
-                        android:textColor="@color/darkFont"/>
-
-                    <TextView
-                        android:id="@+id/averageWeek_text"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:background="@drawable/light_border"
-                        android:textColor="@color/darkFont"/>
-
-                    <TextView
-                        android:id="@+id/averageMonth_text"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/light_border"
-                        android:textColor="@color/darkFont"
-                        android:textAlignment="center"/>
-
-                </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/ask_bid"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:layout_below="@+id/price_layout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_weight="1"
+                android:text="Price"
+                android:textColor="@color/lightFont" />
 
-                <LinearLayout
+            <TextView
+                android:id="@+id/price_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/Teal"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:textColor="@color/darkFont"
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/date_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/darkFont"
+                android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/day_week_month"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/price"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimaryDark" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@color/colorPrimary">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="Day"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightFont" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/darkFont"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:text="Ask"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="Week"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightFont" />
 
-                        <TextView
-                            android:id="@+id/ask_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textColor="@color/Teal" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="Month"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightFont" />
 
-                    </LinearLayout>
+            </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="0.5dp"
-                        android:layout_marginLeft="1dp"
-                        android:orientation="vertical"
-                        android:background="@color/colorPrimary">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/darkFont"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:text="Bid"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="Open"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightFont" />
 
-                        <TextView
-                            android:id="@+id/bid_text"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/Teal"/>
+                <TextView
+                    android:id="@+id/openDay_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Teal" />
 
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/openWeek_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Teal" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="0.5dp"
-                        android:layout_marginRight="1dp"
-                        android:background="@color/colorPrimary">
+                <TextView
+                    android:id="@+id/openMonth_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Teal" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/darkFont"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:text="Low"/>
+            </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/low_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textColor="@color/redFont" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="15"
+                android:background="@color/colorPrimaryDark"
+                android:orientation="vertical">
 
-                    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:text="Average"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightFont" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@color/colorPrimary">
+                <TextView
+                    android:id="@+id/averageDay_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Teal" />
 
-                        <TextView
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/darkFont"
-                            android:layout_marginTop="5dp"
-                            android:text="High"/>
+                <TextView
+                    android:id="@+id/averageWeek_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Teal" />
 
-                        <TextView
-                            android:id="@+id/high_text"
-                            android:layout_gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/greenFont"/>
+                <TextView
+                    android:id="@+id/averageMonth_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@drawable/border"
+                    android:textAlignment="center"
+                    android:textColor="@color/Teal" />
 
-                    </LinearLayout>
+            </LinearLayout>
 
-                </LinearLayout>
+        </LinearLayout>
 
-            </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
-            <RelativeLayout
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/ask_bid"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ask_bid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price_layout"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/change_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/light_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="2dp"
+                    android:text="Ask"
+                    android:textColor="@color/lightFont" />
+
+                <TextView
+                    android:id="@+id/ask_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/Teal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/light_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Bid"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/lightFont" />
+
+                <TextView
+                    android:id="@+id/bid_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/Teal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/light_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Low"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/lightFont" />
+
+                <TextView
+                    android:id="@+id/low_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/redFont" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/light_border"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="High"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/lightFont" />
+
+                <TextView
+                    android:id="@+id/high_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/greenFont" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/change_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/ask_bid_layout"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/hourly_change_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Hourly Change"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+            <TextView
+                android:id="@+id/hourlyChangePrice_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp"
-                        android:background="@drawable/round_border"
-                        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/hourlyChangePercent_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:text="Hourly Change"/>
+        </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/hourlyChangePrice_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+        <LinearLayout
+            android:id="@+id/daily_change_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hourly_change_layout"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hourly_change_layout">
 
-                        <TextView
-                            android:id="@+id/hourlyChangePercent_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Daily Change"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont" />
 
+            <TextView
+                android:id="@+id/dailyChangePrice_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    </LinearLayout>
+            <TextView
+                android:id="@+id/dailyChangePercent_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/round_border"
-                        android:orientation="horizontal">
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:text="Daily Change"/>
+        <LinearLayout
+            android:id="@+id/weekly_change_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/daily_change_layout"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/daily_change_layout">
 
-                        <TextView
-                            android:id="@+id/dailyChangePrice_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Weekly Change"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont" />
 
-                        <TextView
-                            android:id="@+id/dailyChangePercent_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:id="@+id/weeklyChangePrice_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    </LinearLayout>
+            <TextView
+                android:id="@+id/weeklyChangePercent_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/round_border"
-                        android:orientation="horizontal">
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:text="Weekly Change"/>
+        <LinearLayout
+            android:id="@+id/monthly_change_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weekly_change_layout"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weekly_change_layout">
 
-                        <TextView
-                            android:id="@+id/weeklyChangePrice_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Monthly Change"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont" />
 
-                        <TextView
-                            android:id="@+id/weeklyChangePercent_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:id="@+id/monthlyChangePrice_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    </LinearLayout>
+            <TextView
+                android:id="@+id/monthlyChangePercent_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/round_border"
-                        android:orientation="horizontal">
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:text="Monthly Change"/>
+        <LinearLayout
+            android:id="@+id/yearly_change_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/monthly_change_layout"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/monthly_change_layout">
 
-                        <TextView
-                            android:id="@+id/monthlyChangePrice_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="Yearly Change"
+                android:textAlignment="center"
+                android:textColor="@color/lightFont" />
 
-                        <TextView
-                            android:id="@+id/monthlyChangePercent_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
+            <TextView
+                android:id="@+id/yearlyChangePrice_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    </LinearLayout>
+            <TextView
+                android:id="@+id/yearlyChangePercent_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@color/greenFont" />
 
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:background="@drawable/round_border"
-                        android:orientation="horizontal">
+        </LinearLayout>
 
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/lightFont"
-                            android:text="Yearly Change"/>
+    </android.support.constraint.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/yearlyChangePrice_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
-
-                        <TextView
-                            android:id="@+id/yearlyChangePercent_text"
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/greenFont"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

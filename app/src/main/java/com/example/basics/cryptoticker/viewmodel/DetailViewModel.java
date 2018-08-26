@@ -4,65 +4,73 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Transformations;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.basics.cryptoticker.Repository;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
-import com.example.basics.cryptoticker.data.model.CryptoHistory;
+import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
+import com.github.mikephil.charting.data.Entry;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.inject.Inject;
 
 
 public class DetailViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<CryptoHistory>> currencyHistory;
-    private LiveData<CryptoEntity> bitcoin;
+    private final Repository repository;
+    private final LiveData<List<Entry>> currencyHistory;
+    final List<Entry> entries= new ArrayList<>();
 
     @Inject
     public DetailViewModel(@NonNull Repository repository, @NonNull Application application) {
         super(application);
-        currencyHistory = repository.getBitcoinUsdDaily();
-        bitcoin = repository.getBitcoinUSD();
+        this.repository = repository;
+        currencyHistory = Transformations.map(repository.getBitcoinUsdDaily(), this::convertToEntry);
+        repository.getCoinData("global", "BTC");
     }
 
-    public LiveData<CryptoEntity> getBitcoinUSD() { return bitcoin; }
+    public LiveData<CryptoEntity> getBitcoinUSD() { return repository.getBitcoinUSD(); }
 
-    public MutableLiveData<List<CryptoHistory>> getDailyCurrency() {
-        return this.currencyHistory;
-    }
+    public LiveData<List<Entry>> getDailyCurrency() { return currencyHistory; }
 
-    public void splitCurrencyHistory(List<CryptoHistory> a)
+    private List<Entry> convertToEntry(List<CryptoHistory> currencyHistory)
     {
+        String now = Calendar.getInstance(TimeZone.getTimeZone("gmt")).toString();
 
-        for(CryptoHistory crypto: a)
-        {
+            for (CryptoHistory c : currencyHistory) {
+                if(c.getMinute().substring(8,10).equals(now.substring(198,200)))
+                {
+                    if (c.getMinute().substring(14, 16).equals("00") || c.getMinute().substring(14, 16).equals("30")) {
+                        String time = c.getMinute().substring(11, 16);
+                        float timeFloat = Float.parseFloat(time.replace(":", "."));
+                        float resultTo100 = convertTo100(timeFloat);
+                        entries.add(new Entry(resultTo100, (float) c.getAverage()));
+                    }
+                }
+            }
 
-            Log.wtf("ANAN", convertStringToTimestamp(crypto.getMinute()).toString());
-
-        }
-
+        return entries;
     }
 
-    public static Timestamp convertStringToTimestamp(String str_date) {
-        try {
+    private float convertTo100(float input)
+    {
+        String input_string = Float.toString(input);
+        BigDecimal inputBD = new BigDecimal(input_string);
+        String hhStr = input_string.split("\\.")[0];
+        BigDecimal output = new BigDecimal(Float.toString(Integer.parseInt(hhStr)));
+        output = output.add((inputBD.subtract(output).divide(BigDecimal.valueOf(60), 10, BigDecimal.ROUND_HALF_EVEN)).multiply(BigDecimal.valueOf(100)));
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Date parsedDate = dateFormat.parse(str_date);
-            Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-
-            return timestamp;
-
-        } catch (ParseException e) {
-            System.out.println("Exception :" + e);
-            return null;
-        }
+        return Float.parseFloat(output.toString());
     }
-
 }

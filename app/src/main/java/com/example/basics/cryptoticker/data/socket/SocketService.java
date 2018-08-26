@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.basics.cryptoticker.data.model.Ticket;
-import com.example.basics.cryptoticker.data.model.IBitcoinAverageApi;
+import com.example.basics.cryptoticker.data.model.pojo.Ticket;
+import com.example.basics.cryptoticker.data.model.web.IBitcoinAverageApi;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -39,10 +39,7 @@ public class SocketService extends Service {
     @Inject
     Authentication authentication;
 
-
-    public SocketService() {
-        super();
-    }
+    public SocketService() { super(); }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -57,14 +54,13 @@ public class SocketService extends Service {
 
                 client.newWebSocket(request, socketListener);
 
-
-                Log.wtf("Service Intent ", "has started.");
+                Log.wtf("Service Service ", "has started.");
 
             }
 
             @Override
             public void onFailure(Call<Ticket> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
 

@@ -24,9 +24,11 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
 
         // View models cannot be injected directly because they won't be bound to the owner's
         // view model scope.
-    //    creators.put(AlarmViewModel.class, () -> viewModelSubComponent.alarmViewModel());
+
         creators.put(DetailViewModel.class, () -> viewModelSubComponent.detailViewModel());
         creators.put(MainActivityViewModel.class, () -> viewModelSubComponent.mainActivityViewModel());
+        creators.put(AlarmViewModel.class, () -> viewModelSubComponent.alarmViewModel());
+        creators.put(NewsViewModel.class, () -> viewModelSubComponent.newsViewModel());
     }
 
     @Override

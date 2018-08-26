@@ -1,6 +1,5 @@
 package com.example.basics.cryptoticker.di.modules;
 
-import com.example.basics.cryptoticker.data.socket.SocketListener;
 import com.example.basics.cryptoticker.data.socket.SocketService;
 
 import dagger.Module;

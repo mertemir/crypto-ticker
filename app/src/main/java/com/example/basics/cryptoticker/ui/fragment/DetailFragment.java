@@ -1,29 +1,36 @@
 package com.example.basics.cryptoticker.ui.fragment;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
+import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
 import com.example.basics.cryptoticker.di.qualifiers.Injectible;
 import com.example.basics.cryptoticker.viewmodel.DetailViewModel;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.EntryXComparator;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -40,13 +47,17 @@ public class DetailFragment extends Fragment implements Injectible{
 
     String TAG = this.getClass().getName();
 
-    @BindView(R.id.chart)LineChart chart;
+    @BindView(R.id.chart)
+    LineChart chart;
 
     @BindView(R.id.price_text)
     TextView priceTV;
 
     @BindView(R.id.time_text)
     TextView timeTV;
+
+    @BindView(R.id.date_text)
+    TextView dateTV;
 
     @BindView(R.id.openDay_text)
     TextView openDayTV;
@@ -110,94 +121,6 @@ public class DetailFragment extends Fragment implements Injectible{
 
     private Unbinder unbinder;
 
-    List<Entry> entries = new ArrayList<Entry>();
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        final DetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel.class);
-
-       viewModel.getBitcoinUSD().observe(this, cryptocurrency -> {
-
-            priceTV.setText(String.valueOf(cryptocurrency.getLast()));
-            timeTV.setText(cryptocurrency.getDisplayTimestamp());
-
-            openDayTV.setText(String.valueOf(cryptocurrency.getOpenDay()));
-            openWeekTV.setText(String.valueOf(cryptocurrency.getOpenWeek()));
-            openMonthTV.setText(String.valueOf(cryptocurrency.getOpenMonth()));
-
-            averageDayTV.setText(String.valueOf(cryptocurrency.getAverageDay()));
-            averageWeekTV.setText(String.valueOf(cryptocurrency.getAverageWeek()));
-            averageMonthTV.setText(String.valueOf(cryptocurrency.getAverageMonth()));
-
-            askTV.setText(String.valueOf(cryptocurrency.getAsk()));
-            bidTV.setText(String.valueOf(cryptocurrency.getBid()));
-            lowTV.setText(String.valueOf(cryptocurrency.getLow()));
-            highTV.setText(String.valueOf(cryptocurrency.getHigh()));
-
-            hourlyChangePriceTV.setText(String.valueOf(cryptocurrency.getChangePriceHour()));
-            hourlyChangePercentTV.setText(String.valueOf(cryptocurrency.getChangePercentHour()));
-
-            dailyChangePriceTV.setText(String.valueOf(cryptocurrency.getChangePriceDay()));
-            dailyChangePercentTV.setText(String.valueOf(cryptocurrency.getChangePercentDay()));
-
-            weeklyChangePriceTV.setText(String.valueOf(cryptocurrency.getChangePriceWeek()));
-            weeklyChangePercentTV.setText(String.valueOf(cryptocurrency.getChangePercentWeek()));
-
-            monthlyChangePriceTV.setText(String.valueOf(cryptocurrency.getChangePriceMonth()));
-            monthlyChangePercentTV.setText(String.valueOf(cryptocurrency.getChangePercentMonth()));
-
-            yearlyChangePriceTV.setText(String.valueOf(cryptocurrency.getChangePriceYear()));
-            yearlyChangePercentTV.setText(String.valueOf(cryptocurrency.getChangePercentYear()));
-
-            changeColors(cryptocurrency);
-
-        });
-
-     /*   App.bitcoinPrice.observe(this, price ->{
-            Log.wtf("fragment ", price);
-            priceTV.setText(price);
-        });*/
-
-/*        viewModel.getCurrency().observe(this, cryptocurrency -> {
-
-            Log.wtf("TİCKET: ", cryptocurrency);
-
-            *//*askValue = (int) cryptocurrency.getAsk();
-            lastValue=(int) cryptocurrency.getLast();*//*
-
-        });*/
-
-        entries.add(new Entry(1, 1));
-        entries.add(new Entry(2, 5));
-        entries.add(new Entry(3, 2));
-        entries.add(new Entry(4, 9));
-
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
-
-        LineData lineData = new LineData(dataSet);
-
-        chart.setData(lineData);
-
-        chart.invalidate(); // refresh
-
-        viewModel.getDailyCurrency().observe(this, cryptoHistories -> {
-
-
-
-        });
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Log.d(TAG, "onCreate");
-
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -205,12 +128,109 @@ public class DetailFragment extends Fragment implements Injectible{
         final ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_detail, container, false);
         unbinder = ButterKnife.bind(this, root);
 
-        Log.d(TAG, "onCreateView");
 
 
+        final DetailViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(DetailViewModel.class);
+
+        viewModel.getBitcoinUSD().observe(this, cryptocurrency -> {
+
+            setDataToUI(cryptocurrency);
+
+        });
+
+        viewModel.getDailyCurrency().observe(this, cryptoHistories -> {
+
+            Collections.sort(cryptoHistories, new EntryXComparator());
+            LineDataSet dataSet = new LineDataSet(cryptoHistories, "Price");
+            dataSet.setDrawCircles(false);
+            dataSet.setDrawValues(false);
+
+            dataSet.setDrawFilled(true);
+            Drawable drawable = ContextCompat.getDrawable(this.getContext(), R.drawable.graph_gradient);
+            dataSet.setFillDrawable(drawable);
+
+            LineData data = new LineData(dataSet);
+
+            chart.setData(data);
+
+            chart.getAxisLeft().setDrawLabels(false);
+            chart.getAxisRight().setDrawLabels(false);
+            chart.getXAxis().setDrawLabels(false);
+            chart.getAxisLeft().setDrawGridLines(false);
+            chart.getXAxis().setDrawGridLines(false);
+            chart.getAxisRight().setDrawGridLines(false);
+
+            XAxis xAxis = chart.getXAxis();
+            xAxis.setEnabled(false);
+
+            YAxis yAxis = chart.getAxisLeft();
+            yAxis.setEnabled(false);
+
+            YAxis yAxis2 = chart.getAxisRight();
+            yAxis2.setEnabled(false);
+
+            chart.setDrawBorders(false);
+            chart.setDrawGridBackground(false);
+
+            //no legend
+            chart.getLegend().setEnabled(false);
+            // no description text
+            chart.getDescription().setEnabled(false);
+
+            // enable touch gestures
+            chart.setTouchEnabled(false);
+
+            chart.setViewPortOffsets(0f, 0f, 0f, 0f);
+            float xMax = chart.getData().getDataSetByIndex(0).getXMax();
+            float xMin = 0;
+            xAxis.setAxisMaximum(xMax);
+            xAxis.setAxisMinimum(xMin);
+            chart.invalidate();
+
+        });
 
         return root;
 
+    }
+
+    private void setDataToUI(CryptoEntity cryptocurrency) {
+
+        if(cryptocurrency != null)
+        {
+            priceTV.setText("$ " + cryptocurrency.getLast());
+            dateTV.setText(cryptocurrency.getDisplayTimestamp().substring(0,10));
+            timeTV.setText(cryptocurrency.getDisplayTimestamp().substring(10,19) + " GMT");
+
+            openDayTV.setText("$ " + cryptocurrency.getOpenDay());
+            openWeekTV.setText("$ " + cryptocurrency.getOpenWeek());
+            openMonthTV.setText("$ " + cryptocurrency.getOpenMonth());
+
+            averageDayTV.setText("$ " + cryptocurrency.getAverageDay());
+            averageWeekTV.setText("$ " + cryptocurrency.getAverageWeek());
+            averageMonthTV.setText("$ " + cryptocurrency.getAverageMonth());
+
+            askTV.setText("$ " + cryptocurrency.getAsk());
+            bidTV.setText("$ " + cryptocurrency.getBid());
+            lowTV.setText("$ " + cryptocurrency.getLow());
+            highTV.setText("$ " + cryptocurrency.getHigh());
+
+            hourlyChangePriceTV.setText("$ " + cryptocurrency.getChangePriceHour());
+            hourlyChangePercentTV.setText(cryptocurrency.getChangePercentHour() + " %");
+
+            dailyChangePriceTV.setText("$ " + cryptocurrency.getChangePriceDay());
+            dailyChangePercentTV.setText(cryptocurrency.getChangePercentDay() + " %");
+
+            weeklyChangePriceTV.setText("$ " + cryptocurrency.getChangePriceWeek());
+            weeklyChangePercentTV.setText(cryptocurrency.getChangePercentWeek() + " %");
+
+            monthlyChangePriceTV.setText("$ " + cryptocurrency.getChangePriceMonth());
+            monthlyChangePercentTV.setText(cryptocurrency.getChangePercentMonth() + " %");
+
+            yearlyChangePriceTV.setText("$ " + cryptocurrency.getChangePriceYear());
+            yearlyChangePercentTV.setText(cryptocurrency.getChangePercentYear() + " %");
+
+            changeColors(cryptocurrency);
+        }
     }
 
     @Override
@@ -231,6 +251,11 @@ public class DetailFragment extends Fragment implements Injectible{
                 hourlyChangePercentTV.setTextColor(getResources().getColor(R.color.redFont));
                 hourlyChangePriceTV.setTextColor(getResources().getColor(R.color.redFont));
             }
+            else
+            {
+                hourlyChangePercentTV.setTextColor(getResources().getColor(R.color.greenFont));
+                hourlyChangePriceTV.setTextColor(getResources().getColor(R.color.greenFont));
+            }
         }
 
         if(!cryptocurrency.getChangePriceDay().isEmpty())
@@ -239,6 +264,11 @@ public class DetailFragment extends Fragment implements Injectible{
             {
                 dailyChangePercentTV.setTextColor(getResources().getColor(R.color.redFont));
                 dailyChangePriceTV.setTextColor(getResources().getColor(R.color.redFont));
+            }
+            else
+            {
+                dailyChangePercentTV.setTextColor(getResources().getColor(R.color.greenFont));
+                dailyChangePriceTV.setTextColor(getResources().getColor(R.color.greenFont));
             }
         }
 
@@ -249,6 +279,11 @@ public class DetailFragment extends Fragment implements Injectible{
                 weeklyChangePercentTV.setTextColor(getResources().getColor(R.color.redFont));
                 weeklyChangePriceTV.setTextColor(getResources().getColor(R.color.redFont));
             }
+            else
+            {
+                weeklyChangePercentTV.setTextColor(getResources().getColor(R.color.greenFont));
+                weeklyChangePriceTV.setTextColor(getResources().getColor(R.color.greenFont));
+            }
         }
 
         if(!cryptocurrency.getChangePriceMonth().isEmpty())
@@ -257,6 +292,11 @@ public class DetailFragment extends Fragment implements Injectible{
             {
                 monthlyChangePercentTV.setTextColor(getResources().getColor(R.color.redFont));
                 monthlyChangePriceTV.setTextColor(getResources().getColor(R.color.redFont));
+            }
+            else
+            {
+                monthlyChangePercentTV.setTextColor(getResources().getColor(R.color.greenFont));
+                monthlyChangePriceTV.setTextColor(getResources().getColor(R.color.greenFont));
             }
         }
 
@@ -267,7 +307,11 @@ public class DetailFragment extends Fragment implements Injectible{
                 yearlyChangePercentTV.setTextColor(getResources().getColor(R.color.redFont));
                 yearlyChangePriceTV.setTextColor(getResources().getColor(R.color.redFont));
             }
+            else
+            {
+                yearlyChangePercentTV.setTextColor(getResources().getColor(R.color.greenFont));
+                yearlyChangePriceTV.setTextColor(getResources().getColor(R.color.greenFont));
+            }
         }
-
     }
 }

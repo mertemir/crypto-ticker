@@ -4,6 +4,8 @@
     <color name="colorPrimary">#235890</color>
     <color name="colorPrimaryDark">#133e6a</color>
 
+    <color name="colorBoxDark">#0e335c</color>
+
     <color name="lightFont">#a3daff</color>
     <color name="darkFont">#4c9aee</color>
 

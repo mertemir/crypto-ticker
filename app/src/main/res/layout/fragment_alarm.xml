@@ -1,14 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AlarmFragment">
+    android:orientation="vertical"
+    tools:context=".ui.fragment.DetailFragment"
+    android:background="@color/colorPrimaryDark">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_marginTop="3dp"
+                android:text="New Alarm"
+                android:textColor="@color/lightFont"
+                android:textSize="16dp" />
+
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/alarm_add_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/ic_check_light_blue_24dp"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_toLeftOf="@id/alarm_price_editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/lightFont"
+                android:textSize="18dp"
+                android:layout_marginRight="3dp"
+                android:text="$"/>
+
+            <EditText
+                android:layout_centerHorizontal="true"
+                android:id="@+id/alarm_price_editText"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textColor="@color/lightFont"
+                android:layout_marginBottom="20dp"/>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Alarm" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:textColor="@color/lightFont"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:text="Active Alarms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"/>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/lightFont"
+                android:background="@drawable/border"
+                android:text="Currency"/>
+
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/lightFont"
+                android:background="@drawable/border"
+                android:text="Price"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/lightFont"
+                android:background="@drawable/border"
+                android:text="Set Time"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/lightFont"
+                android:background="@drawable/border"
+                android:text="Delete"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/alarm_RecyclerView"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

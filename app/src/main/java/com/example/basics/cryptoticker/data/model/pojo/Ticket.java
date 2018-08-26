@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.data.model;
+package com.example.basics.cryptoticker.data.model.pojo;
 
 public class Ticket {
 

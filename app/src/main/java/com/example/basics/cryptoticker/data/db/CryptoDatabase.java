@@ -7,10 +7,12 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.basics.cryptoticker.data.db.dao.AlarmDao;
 import com.example.basics.cryptoticker.data.db.dao.CryptoDao;
+import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
 
-@Database(entities = {CryptoEntity.class}, version = 1)
+@Database(entities = {CryptoEntity.class, AlarmEntity.class}, version = 1)
 public abstract class CryptoDatabase extends RoomDatabase {
 
     private static CryptoDatabase sInstance;
@@ -18,6 +20,8 @@ public abstract class CryptoDatabase extends RoomDatabase {
     public static final String DATABASE_NAME = "crypto-db";
 
     public abstract CryptoDao cryptoDao();
+
+    public abstract AlarmDao alarmDao();
 
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 

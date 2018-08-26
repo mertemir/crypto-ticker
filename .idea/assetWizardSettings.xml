@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Mertovski\Desktop\Mert\Cryptotick\bitcoin.png" />
-                                      <entry key="outputName" value="bitcoin" />
+                                      <entry key="imageAsset" value="C:\Users\Mertovski\Desktop\icons8-stocks-24.png" />
+                                      <entry key="outputName" value="detail" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -54,11 +54,61 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                            <entry key="notification">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="clipArt">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="clipartAsset">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_notifications_active_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\Mertovski\Desktop\icons8-bitcoin-48.png" />
+                                      <entry key="outputName" value="alarm_notification" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
                           </map>
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="NOTIFICATION" />
                           </map>
                         </option>
                       </PersistentState>
@@ -84,7 +134,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_menu_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_notifications_active_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -94,8 +144,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_menu" />
-                            <entry key="sourceFile" value="C:\Users\Mertovski" />
+                            <entry key="outputName" value="ic_notifications_active_black_24dp" />
+                            <entry key="sourceFile" value="C:\Users\Mertovski\Downloads\icons8-news.svg" />
                           </map>
                         </option>
                       </PersistentState>

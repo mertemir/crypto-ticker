@@ -1,14 +1,16 @@
 package com.example.basics.cryptoticker;
 
 import android.app.Activity;
-import android.app.ActivityManager;
+import android.app.AlarmManager;
 import android.app.Application;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 
 import com.example.basics.cryptoticker.data.db.CryptoDatabase;
+import com.example.basics.cryptoticker.data.socket.SocketBroadcastReceiver;
 import com.example.basics.cryptoticker.di.AppInjector;
-import com.example.basics.cryptoticker.data.socket.SocketService;
 
 import javax.inject.Inject;
 
@@ -19,8 +21,11 @@ import dagger.android.HasServiceInjector;
 
 public class App extends Application implements HasActivityInjector, HasServiceInjector {
 
-    // TODO: Find out a way to better implement roomDB
+    // TODO: Find out a way to inject roomDB
     public static CryptoDatabase cryptoDatabase;
+
+    // TODO: context inject it
+    public static Context context;
 
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
@@ -28,17 +33,14 @@ public class App extends Application implements HasActivityInjector, HasServiceI
     @Inject
     DispatchingAndroidInjector<Service> dispatchingServiceInjector;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
         AppInjector.init(this);
-
         cryptoDatabase = CryptoDatabase.getInstance(this);
-
-        if(!isServiceRunning("com.example.basics.cryptoticker.model.socket.SocketService"))
-        startService(new Intent(this, SocketService.class));
-
-
+        startSocketService();
+        context = this;
     }
 
     @Override
@@ -49,13 +51,11 @@ public class App extends Application implements HasActivityInjector, HasServiceI
     @Override
     public AndroidInjector<Service> serviceInjector() { return dispatchingServiceInjector; }
 
-    private boolean isServiceRunning(String serviceClassName) {
-        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
-            if(serviceClassName.equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
+    private void startSocketService(){
+        Intent socketIntent= new Intent(this, SocketBroadcastReceiver.class);
+        PendingIntent socketAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, socketIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        long startTime=System.currentTimeMillis(); //alarm starts immediately
+        AlarmManager backupAlarmMgr=(AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+        backupAlarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP,startTime,AlarmManager.INTERVAL_FIFTEEN_MINUTES,socketAlarmIntent); // alarm will repeat after every 15 minutes
     }
 }

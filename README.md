@@ -30,7 +30,7 @@ notification even when the app is closed. There's also a page where latest bitco
 <img src="https://github.com/mertemir/crypto-ticker/blob/master/screenshots/detail_tick.gif?raw=true" width="425">
 <img src="https://github.com/mertemir/crypto-ticker/blob/master/screenshots/alarm_add.gif?raw=true" width="425">
 <img src="https://github.com/mertemir/crypto-ticker/blob/master/screenshots/alarm_trigger.gif?raw=true" width="425">
-<img src="https://github.com/mertemir/crypto-ticker/blob/master/screenshots/news.gif?raw=true" width="425">
+<img src="https://github.com/mertemir/crypto-ticker/blob/master/screenshots/news.png?raw=true" width="425">
 </p>
 
 

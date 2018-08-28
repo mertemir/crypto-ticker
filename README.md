@@ -1,10 +1,7 @@
 # crypto-ticker
 
 <h3>Introduction</h3>
-Crypto-ticker is an android application written with the MVVM design pattern. Latest Bitcoin data are shown and updated in 
-real-time. It's done so by connecting to a websocket which provides Bitcoin data in real-time. 
-Additionally it allows users to set alarms for specific prices. When market and alarm prices match the app pops up a 
-notification even when the app is closed. There's also a page where latest bitcoin related news are displayed.
+Crypto-ticker is an android application written with the Model-View-ViewModel design pattern. Latest Bitcoin data are shown and updated in real-time by connecting to a websocket. Users can be informed about the latest changes on the currency and set alarms for specific prices. When market and alarm prices match the app pops up a notification. There's also a news page where latest bitcoin related news are displayed.
 
 <h3>Used technologies</h3>
 

@@ -13,6 +13,8 @@ notification even when the app is closed. There's also a page where latest bitco
   - Room
   - LiveData
   
+* Data Binding
+
 * Retrofit 2
 
 * Okhttp
@@ -23,6 +25,8 @@ notification even when the app is closed. There's also a page where latest bitco
 * MPAndroidChart
 
 * Picasso
+
+* Butterknife
 
 
 <h3>Screenshots</h3>

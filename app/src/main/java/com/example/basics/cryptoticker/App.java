@@ -21,10 +21,10 @@ import dagger.android.HasServiceInjector;
 
 public class App extends Application implements HasActivityInjector, HasServiceInjector {
 
-    // TODO: Find out a way to inject roomDB
+    // TODO: Inject DB to needed places
     public static CryptoDatabase cryptoDatabase;
 
-    // TODO: context inject it
+    // TODO: Inject Context to needed places
     public static Context context;
 
     @Inject

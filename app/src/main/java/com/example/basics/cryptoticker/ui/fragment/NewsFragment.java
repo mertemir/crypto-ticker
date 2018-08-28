@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.di.qualifiers.Injectible;
-import com.example.basics.cryptoticker.ui.NewsAdapter;
+import com.example.basics.cryptoticker.ui.adapter.NewsAdapter;
 import com.example.basics.cryptoticker.viewmodel.NewsViewModel;
 
 import javax.inject.Inject;
@@ -41,17 +41,21 @@ public class NewsFragment extends Fragment implements Injectible {
         final ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_news, container, false);
         unbinder = ButterKnife.bind(this, root);
 
-        mAdapter = new NewsAdapter();
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        newsRV.setLayoutManager(mLayoutManager);
-        newsRV.setItemAnimator(new DefaultItemAnimator());
-        newsRV.setAdapter(mAdapter);
+        initAdapter();
 
         final NewsViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel.class);
 
         viewModel.getNews().observe(this, news -> mAdapter.setNewsList(news,getContext()));
 
         return root;
+    }
+
+    private void initAdapter() {
+        mAdapter = new NewsAdapter();
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        newsRV.setLayoutManager(mLayoutManager);
+        newsRV.setItemAnimator(new DefaultItemAnimator());
+        newsRV.setAdapter(mAdapter);
     }
 
     @Override

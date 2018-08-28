@@ -169,97 +169,97 @@ public class CryptoEntity {
     private String averageMonth;
     private String volume;
 
-    private String changePriceHour;
-    private String changePriceDay;
-    private String changePriceWeek;
-    private String changePriceMonth;
-    private String changePriceYear;
+    private Double changePriceHour;
+    private Double changePriceDay;
+    private Double changePriceWeek;
+    private Double changePriceMonth;
+    private Double changePriceYear;
 
-    public String getChangePriceHour() {
+    public Double getChangePriceHour() {
         return changePriceHour;
     }
 
-    public void setChangePriceHour(String changePriceHour) {
+    public void setChangePriceHour(Double changePriceHour) {
         this.changePriceHour = changePriceHour;
     }
 
-    public String getChangePriceDay() {
+    public Double getChangePriceDay() {
         return changePriceDay;
     }
 
-    public void setChangePriceDay(String changePriceDay) {
+    public void setChangePriceDay(Double changePriceDay) {
         this.changePriceDay = changePriceDay;
     }
 
-    public String getChangePriceWeek() {
+    public Double getChangePriceWeek() {
         return changePriceWeek;
     }
 
-    public void setChangePriceWeek(String changePriceWeek) {
+    public void setChangePriceWeek(Double changePriceWeek) {
         this.changePriceWeek = changePriceWeek;
     }
 
-    public String getChangePriceMonth() {
+    public Double getChangePriceMonth() {
         return changePriceMonth;
     }
 
-    public void setChangePriceMonth(String changePriceMonth) {
+    public void setChangePriceMonth(Double changePriceMonth) {
         this.changePriceMonth = changePriceMonth;
     }
 
-    public String getChangePriceYear() {
+    public Double getChangePriceYear() {
         return changePriceYear;
     }
 
-    public void setChangePriceYear(String changePriceYear) {
+    public void setChangePriceYear(Double changePriceYear) {
         this.changePriceYear = changePriceYear;
     }
 
-    public String getChangePercentHour() {
+    public Double getChangePercentHour() {
         return changePercentHour;
     }
 
-    public void setChangePercentHour(String changePercentHour) {
+    public void setChangePercentHour(Double changePercentHour) {
         this.changePercentHour = changePercentHour;
     }
 
-    public String getChangePercentDay() {
+    public Double getChangePercentDay() {
         return changePercentDay;
     }
 
-    public void setChangePercentDay(String changePercentDay) {
+    public void setChangePercentDay(Double changePercentDay) {
         this.changePercentDay = changePercentDay;
     }
 
-    public String getChangePercentWeek() {
+    public Double getChangePercentWeek() {
         return changePercentWeek;
     }
 
-    public void setChangePercentWeek(String changePercentWeek) {
+    public void setChangePercentWeek(Double changePercentWeek) {
         this.changePercentWeek = changePercentWeek;
     }
 
-    public String getChangePercentMonth() {
+    public Double getChangePercentMonth() {
         return changePercentMonth;
     }
 
-    public void setChangePercentMonth(String changePercentMonth) {
+    public void setChangePercentMonth(Double changePercentMonth) {
         this.changePercentMonth = changePercentMonth;
     }
 
-    public String getChangePercentYear() {
+    public Double getChangePercentYear() {
         return changePercentYear;
     }
 
-    public void setChangePercentYear(String changePercentYear) {
+    public void setChangePercentYear(Double changePercentYear) {
         this.changePercentYear = changePercentYear;
     }
 
-    private String changePercentHour;
-    private String changePercentDay;
-    private String changePercentWeek;
-    private String changePercentMonth;
-    private String changePercentYear;
+    private Double changePercentHour;
+    private Double changePercentDay;
+    private Double changePercentWeek;
+    private Double changePercentMonth;
+    private Double changePercentYear;
 
     private String volumePercent;
     private Integer timestamp;

@@ -44,7 +44,10 @@ public class AlarmChecker {
         Notification notify=new Notification.Builder
                 (context).setContentTitle("Bitcoin Alarm").setContentText("Your alarm at $" + alarm.getPrice() + " has triggered.")
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.btc))
-                .setSmallIcon(R.drawable.alarm_notification).build();
+                .setSmallIcon(R.drawable.alarm_notification)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setPriority(Notification.PRIORITY_MAX).build();
+
         notify.flags |= Notification.FLAG_AUTO_CANCEL;
         notif.notify(0, notify);
     }

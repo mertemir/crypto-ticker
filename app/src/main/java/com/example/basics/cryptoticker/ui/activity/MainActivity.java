@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         initNavigationView();
     }
 
+    @Override
+    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() { return dispatchingAndroidInjector; }
+
     /**
      * Listener used to change the selected item in the bottom navigation view when the page is switched.
      */
@@ -89,11 +92,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
             // ignore
         }
     };
-
-    @Override
-    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingAndroidInjector;
-    }
 
     private class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -134,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
             }
         }
     }
-
 
     private void initNavigationView() {
         final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

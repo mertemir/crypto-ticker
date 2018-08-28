@@ -30,6 +30,7 @@ public class DetailViewModel extends AndroidViewModel {
 
     private final Repository repository;
     private final LiveData<List<Entry>> currencyHistory;
+    LiveData<CryptoEntity> bitcoin;
     final List<Entry> entries= new ArrayList<>();
 
     @Inject
@@ -38,9 +39,10 @@ public class DetailViewModel extends AndroidViewModel {
         this.repository = repository;
         currencyHistory = Transformations.map(repository.getBitcoinUsdDaily(), this::convertToEntry);
         repository.getCoinData("global", "BTC");
+        this.bitcoin = repository.getBitcoinUSD();
     }
 
-    public LiveData<CryptoEntity> getBitcoinUSD() { return repository.getBitcoinUSD(); }
+    public LiveData<CryptoEntity> getBitcoin() { return bitcoin; }
 
     public LiveData<List<Entry>> getDailyCurrency() { return currencyHistory; }
 

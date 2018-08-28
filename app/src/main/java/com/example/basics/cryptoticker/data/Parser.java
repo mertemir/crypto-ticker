@@ -28,17 +28,17 @@ public class Parser {
         cryptocurrency.setAverageWeek(result.getAsJsonObject("averages").get("week").getAsString());
         cryptocurrency.setAverageMonth(result.getAsJsonObject("averages").get("month").getAsString());
 
-        cryptocurrency.setChangePercentHour(result.getAsJsonObject("changes").getAsJsonObject("percent").get("hour").getAsString());
-        cryptocurrency.setChangePercentDay(result.getAsJsonObject("changes").getAsJsonObject("percent").get("day").getAsString());
-        cryptocurrency.setChangePercentWeek(result.getAsJsonObject("changes").getAsJsonObject("percent").get("week").getAsString());
-        cryptocurrency.setChangePercentMonth(result.getAsJsonObject("changes").getAsJsonObject("percent").get("month").getAsString());
-        cryptocurrency.setChangePercentYear(result.getAsJsonObject("changes").getAsJsonObject("percent").get("year").getAsString());
+        cryptocurrency.setChangePercentHour(result.getAsJsonObject("changes").getAsJsonObject("percent").get("hour").getAsDouble());
+        cryptocurrency.setChangePercentDay(result.getAsJsonObject("changes").getAsJsonObject("percent").get("day").getAsDouble());
+        cryptocurrency.setChangePercentWeek(result.getAsJsonObject("changes").getAsJsonObject("percent").get("week").getAsDouble());
+        cryptocurrency.setChangePercentMonth(result.getAsJsonObject("changes").getAsJsonObject("percent").get("month").getAsDouble());
+        cryptocurrency.setChangePercentYear(result.getAsJsonObject("changes").getAsJsonObject("percent").get("year").getAsDouble());
 
-        cryptocurrency.setChangePriceHour(result.getAsJsonObject("changes").getAsJsonObject("price").get("hour").getAsString());
-        cryptocurrency.setChangePriceDay(result.getAsJsonObject("changes").getAsJsonObject("price").get("day").getAsString());
-        cryptocurrency.setChangePriceWeek(result.getAsJsonObject("changes").getAsJsonObject("price").get("week").getAsString());
-        cryptocurrency.setChangePriceMonth(result.getAsJsonObject("changes").getAsJsonObject("price").get("month").getAsString());
-        cryptocurrency.setChangePriceYear(result.getAsJsonObject("changes").getAsJsonObject("price").get("year").getAsString());
+        cryptocurrency.setChangePriceHour(result.getAsJsonObject("changes").getAsJsonObject("price").get("hour").getAsDouble());
+        cryptocurrency.setChangePriceDay(result.getAsJsonObject("changes").getAsJsonObject("price").get("day").getAsDouble());
+        cryptocurrency.setChangePriceWeek(result.getAsJsonObject("changes").getAsJsonObject("price").get("week").getAsDouble());
+        cryptocurrency.setChangePriceMonth(result.getAsJsonObject("changes").getAsJsonObject("price").get("month").getAsDouble());
+        cryptocurrency.setChangePriceYear(result.getAsJsonObject("changes").getAsJsonObject("price").get("year").getAsDouble());
 
         return cryptocurrency;
     }
@@ -65,17 +65,17 @@ public class Parser {
         cryptocurrency.setAverageWeek(result.getAverages().getWeek().toString());
         cryptocurrency.setAverageMonth(result.getAverages().getMonth().toString());
 
-        cryptocurrency.setChangePercentHour(result.getChanges().getPercent().getHour().toString());
-        cryptocurrency.setChangePercentDay(result.getChanges().getPercent().getDay().toString());
-        cryptocurrency.setChangePercentWeek(result.getChanges().getPercent().getWeek().toString());
-        cryptocurrency.setChangePercentMonth(result.getChanges().getPercent().getMonth().toString());
-        cryptocurrency.setChangePercentYear(result.getChanges().getPercent().getYear().toString());
+        cryptocurrency.setChangePercentHour(result.getChanges().getPercent().getHour());
+        cryptocurrency.setChangePercentDay(result.getChanges().getPercent().getDay());
+        cryptocurrency.setChangePercentWeek(result.getChanges().getPercent().getWeek());
+        cryptocurrency.setChangePercentMonth(result.getChanges().getPercent().getMonth());
+        cryptocurrency.setChangePercentYear(result.getChanges().getPercent().getYear());
 
-        cryptocurrency.setChangePriceHour(result.getChanges().getPrice().getHour().toString());
-        cryptocurrency.setChangePriceDay(result.getChanges().getPrice().getDay().toString());
-        cryptocurrency.setChangePriceWeek(result.getChanges().getPrice().getWeek().toString());
-        cryptocurrency.setChangePriceMonth(result.getChanges().getPrice().getMonth().toString());
-        cryptocurrency.setChangePriceYear(result.getChanges().getPrice().getYear().toString());
+        cryptocurrency.setChangePriceHour(result.getChanges().getPrice().getHour());
+        cryptocurrency.setChangePriceDay(result.getChanges().getPrice().getDay());
+        cryptocurrency.setChangePriceWeek(result.getChanges().getPrice().getWeek());
+        cryptocurrency.setChangePriceMonth(result.getChanges().getPrice().getMonth());
+        cryptocurrency.setChangePriceYear(result.getChanges().getPrice().getYear());
 
         return cryptocurrency;
     }

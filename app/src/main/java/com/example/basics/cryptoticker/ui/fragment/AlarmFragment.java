@@ -16,7 +16,7 @@ import android.widget.EditText;
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
 import com.example.basics.cryptoticker.di.qualifiers.Injectible;
-import com.example.basics.cryptoticker.ui.AlarmAdapter;
+import com.example.basics.cryptoticker.ui.adapter.AlarmAdapter;
 import com.example.basics.cryptoticker.viewmodel.AlarmViewModel;
 
 import java.util.Calendar;
@@ -26,7 +26,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
 
 public class AlarmFragment extends Fragment implements Injectible{
 
@@ -55,11 +54,7 @@ public class AlarmFragment extends Fragment implements Injectible{
         final ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_alarm, container, false);
         unbinder = ButterKnife.bind(this, root);
 
-        mAdapter = new AlarmAdapter();
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        alarmRV.setLayoutManager(mLayoutManager);
-        alarmRV.setItemAnimator(new DefaultItemAnimator());
-        alarmRV.setAdapter(mAdapter);
+        initAdapter();
 
         final AlarmViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(AlarmViewModel.class);
         viewModel.getAlarms().observe(this, alarms -> mAdapter.setAlarmList(alarms));
@@ -69,23 +64,7 @@ public class AlarmFragment extends Fragment implements Injectible{
                 bitcoinPrice = Double.parseDouble(cryptoEntity.getLast());
         });
 
-        alarmAddBTN.setOnClickListener(v -> {
-            if(!alarmPriceET.getText().toString().matches("") && bitcoinPrice != null)
-            {
-                String time = Calendar.getInstance().getTime().toString();
-
-                AlarmEntity newAlarm = new AlarmEntity();
-                newAlarm.setDate(time.substring(4,20) + time.substring(30,34));
-                newAlarm.setPrice(Double.parseDouble(alarmPriceET.getText().toString()));
-
-                if(bitcoinPrice > Double.parseDouble(alarmPriceET.getText().toString()))
-                    newAlarm.setAndHigher(0);
-                else if(bitcoinPrice < Double.parseDouble(alarmPriceET.getText().toString()))
-                    newAlarm.setAndHigher(1);
-
-                viewModel.insertAlarm(newAlarm);
-            }
-        });
+        alarmAddBTN.setOnClickListener(v -> { addNewAlarm(viewModel);});
 
         return root;
     }
@@ -95,5 +74,31 @@ public class AlarmFragment extends Fragment implements Injectible{
         super.onDestroyView();
 
         unbinder.unbind();
+    }
+
+    private void initAdapter() {
+        mAdapter = new AlarmAdapter();
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        alarmRV.setLayoutManager(mLayoutManager);
+        alarmRV.setItemAnimator(new DefaultItemAnimator());
+        alarmRV.setAdapter(mAdapter);
+    }
+
+    private void addNewAlarm(AlarmViewModel viewModel) {
+        if(!alarmPriceET.getText().toString().matches("") && bitcoinPrice != null)
+        {
+            String time = Calendar.getInstance().getTime().toString();
+
+            AlarmEntity newAlarm = new AlarmEntity();
+            newAlarm.setDate(time.substring(4,20) + time.substring(30,34));
+            newAlarm.setPrice(Double.parseDouble(alarmPriceET.getText().toString()));
+
+            if(bitcoinPrice > Double.parseDouble(alarmPriceET.getText().toString()))
+                newAlarm.setAndHigher(0);
+            else if(bitcoinPrice < Double.parseDouble(alarmPriceET.getText().toString()))
+                newAlarm.setAndHigher(1);
+
+            viewModel.insertAlarm(newAlarm);
+        }
     }
 }

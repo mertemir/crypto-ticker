@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.ui;
+package com.example.basics.cryptoticker.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.util.DiffUtil;
@@ -21,7 +21,7 @@ import okhttp3.OkHttpClient;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
-    // TODO: Picasso inject edilecek
+    // TODO: Inject Picasso
     Picasso picasso;
     OkHttp3Downloader okHttp3Downloader;
     OkHttpClient okHttpClient;

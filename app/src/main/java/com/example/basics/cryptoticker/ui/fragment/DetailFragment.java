@@ -64,7 +64,7 @@ public class DetailFragment extends Fragment implements Injectible{
 
             binding.chart.getAxisLeft().setDrawLabels(false);
             binding.chart.getAxisRight().setDrawLabels(false);
-            binding.chart.getXAxis().setDrawLabels(false);
+            binding.chart.getXAxis().setDrawLabels(true);
             binding.chart.getAxisLeft().setDrawGridLines(false);
             binding.chart.getXAxis().setDrawGridLines(false);
             binding.chart.getAxisRight().setDrawGridLines(false);

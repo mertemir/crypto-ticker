@@ -55,6 +55,28 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         initNavigationView();
     }
 
+    private void initNavigationView() {
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(sectionsPagerAdapter);
+        viewPager.addOnPageChangeListener(onPageChangeListener);
+        viewPager.setCurrentItem(0);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.navigation_detail:
+                    viewPager.setCurrentItem(0);
+                    return true;
+                case R.id.navigation_alarm:
+                    viewPager.setCurrentItem(1);
+                    return true;
+                case R.id.navigation_news:
+                    viewPager.setCurrentItem(2);
+                    return true;
+                default:
+                    return false;
+            }
+        });
+    }
+
     @Override
     public DispatchingAndroidInjector<Fragment> supportFragmentInjector() { return dispatchingAndroidInjector; }
 
@@ -133,25 +155,5 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         }
     }
 
-    private void initNavigationView() {
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(sectionsPagerAdapter);
-        viewPager.addOnPageChangeListener(onPageChangeListener);
-        viewPager.setCurrentItem(0);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.navigation_detail:
-                    viewPager.setCurrentItem(0);
-                    return true;
-                case R.id.navigation_alarm:
-                    viewPager.setCurrentItem(1);
-                    return true;
-                case R.id.navigation_news:
-                    viewPager.setCurrentItem(2);
-                    return true;
-                default:
-                    return false;
-            }
-        });
-    }
+
 }

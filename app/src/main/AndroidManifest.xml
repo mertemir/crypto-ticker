@@ -24,11 +24,11 @@
         </activity>
 
         <receiver
-            android:name=".data.socket.SocketBroadcastReceiver"
+            android:name=".data.remote.socket.SocketBroadcastReceiver"
             android:process=":remote">
         </receiver>
         
-        <service android:name=".data.socket.SocketService" />
+        <service android:name=".data.remote.socket.SocketService" />
     </application>
 
 </manifest>

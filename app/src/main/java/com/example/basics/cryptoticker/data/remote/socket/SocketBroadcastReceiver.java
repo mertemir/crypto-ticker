@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.data.socket;
+package com.example.basics.cryptoticker.data.remote.socket;
 
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
@@ -21,7 +21,7 @@ public class SocketBroadcastReceiver extends BroadcastReceiver {
     private boolean isServiceRunning(Context context) {
         ActivityManager manager = (ActivityManager) context.getSystemService(ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
-            if("com.example.basics.cryptoticker.data.socket.SocketService".equals(service.service.getClassName())) {
+            if("com.example.basics.cryptoticker.data.remote.socket.SocketService".equals(service.service.getClassName())) {
                 return true;
             }
         }

@@ -1,6 +1,6 @@
-package com.example.basics.cryptoticker.data.model.web;
+package com.example.basics.cryptoticker.data.remote;
 
-import com.example.basics.cryptoticker.data.model.pojo.News;
+import com.example.basics.cryptoticker.data.model.News;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

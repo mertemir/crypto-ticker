@@ -54,9 +54,10 @@ public class AlarmFragment extends Fragment implements Injectible{
         final ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_alarm, container, false);
         unbinder = ButterKnife.bind(this, root);
 
+        final AlarmViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(AlarmViewModel.class);
+
         initAdapter();
 
-        final AlarmViewModel viewModel = ViewModelProviders.of(this, viewModelFactory).get(AlarmViewModel.class);
         viewModel.getAlarms().observe(this, alarms -> mAdapter.setAlarmList(alarms));
 
         viewModel.getBitcoinUSD().observe(this, cryptoEntity -> {
@@ -72,7 +73,6 @@ public class AlarmFragment extends Fragment implements Injectible{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         unbinder.unbind();
     }
 

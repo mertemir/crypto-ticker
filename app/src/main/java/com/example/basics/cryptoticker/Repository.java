@@ -3,18 +3,16 @@ package com.example.basics.cryptoticker;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.basics.cryptoticker.data.Parser;
 import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
-import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
-import com.example.basics.cryptoticker.data.model.pojo.Cryptocurrency;
-import com.example.basics.cryptoticker.data.model.pojo.News;
-import com.example.basics.cryptoticker.data.model.web.IBitcoinAverageApi;
-import com.example.basics.cryptoticker.data.model.web.NewsApi;
+import com.example.basics.cryptoticker.data.model.CryptoHistory;
+import com.example.basics.cryptoticker.data.model.Cryptocurrency;
+import com.example.basics.cryptoticker.data.model.News;
+import com.example.basics.cryptoticker.data.remote.IBitcoinAverageApi;
+import com.example.basics.cryptoticker.data.remote.NewsApi;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,6 +37,7 @@ public class Repository {
     public LiveData<CryptoEntity> getBitcoinUSD() { return App.cryptoDatabase.cryptoDao().getCoin(); }
 
     public LiveData<List<AlarmEntity>> getActiveAlarms() { return App.cryptoDatabase.alarmDao().getAlarms(); }
+
 
     public void insertAlarm(AlarmEntity alarmEntity) { App.cryptoDatabase.alarmDao().insertAlarm(alarmEntity); }
 

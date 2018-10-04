@@ -6,7 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
 import com.example.basics.cryptoticker.Repository;
-import com.example.basics.cryptoticker.data.model.pojo.News;
+import com.example.basics.cryptoticker.data.model.News;
 
 import java.util.List;
 

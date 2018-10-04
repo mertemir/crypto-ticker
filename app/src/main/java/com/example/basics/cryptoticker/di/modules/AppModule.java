@@ -4,10 +4,9 @@ import android.app.NotificationManager;
 import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 
-import com.example.basics.cryptoticker.data.model.web.IBitcoinAverageApi;
-import com.example.basics.cryptoticker.data.model.web.NewsApi;
-import com.example.basics.cryptoticker.data.socket.Authentication;
-import com.example.basics.cryptoticker.data.socket.SocketListener;
+import com.example.basics.cryptoticker.data.remote.IBitcoinAverageApi;
+import com.example.basics.cryptoticker.data.remote.NewsApi;
+import com.example.basics.cryptoticker.data.remote.socket.Authentication;
 import com.example.basics.cryptoticker.viewmodel.ViewModelFactory;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -29,9 +28,6 @@ public class AppModule {
 
     @Provides
     Authentication provideAuthentication(){ return new Authentication(); }
-
-    @Provides
-    SocketListener provideSocketListener(){return new SocketListener(); }
 
     @Singleton @Provides
     Gson provideGson(){

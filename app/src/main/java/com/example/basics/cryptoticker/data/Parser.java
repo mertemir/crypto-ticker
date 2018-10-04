@@ -1,7 +1,7 @@
 package com.example.basics.cryptoticker.data;
 
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
-import com.example.basics.cryptoticker.data.model.pojo.Cryptocurrency;
+import com.example.basics.cryptoticker.data.model.Cryptocurrency;
 import com.google.gson.JsonObject;
 
 public class Parser {

@@ -9,7 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.basics.cryptoticker.data.db.CryptoDatabase;
-import com.example.basics.cryptoticker.data.socket.SocketBroadcastReceiver;
+import com.example.basics.cryptoticker.data.remote.socket.SocketBroadcastReceiver;
 import com.example.basics.cryptoticker.di.AppInjector;
 
 import javax.inject.Inject;

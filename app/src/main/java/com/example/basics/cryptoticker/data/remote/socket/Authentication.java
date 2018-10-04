@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.data.socket;
+package com.example.basics.cryptoticker.data.remote.socket;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

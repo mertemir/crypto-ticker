@@ -13,7 +13,6 @@ public interface ViewModelSubComponent {
     interface Builder {
         ViewModelSubComponent build();
     }
- //   AlarmViewModel alarmViewModel();
     DetailViewModel detailViewModel();
     MainActivityViewModel mainActivityViewModel();
     AlarmViewModel alarmViewModel();

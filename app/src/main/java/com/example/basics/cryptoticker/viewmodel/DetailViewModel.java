@@ -3,23 +3,17 @@ package com.example.basics.cryptoticker.viewmodel;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.example.basics.cryptoticker.Repository;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
-import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
+import com.example.basics.cryptoticker.data.model.CryptoHistory;
 import com.github.mikephil.charting.data.Entry;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -28,7 +22,6 @@ import javax.inject.Inject;
 
 public class DetailViewModel extends AndroidViewModel {
 
-    private final Repository repository;
     private final LiveData<List<Entry>> currencyHistory;
     LiveData<CryptoEntity> bitcoin;
     final List<Entry> entries= new ArrayList<>();
@@ -36,7 +29,6 @@ public class DetailViewModel extends AndroidViewModel {
     @Inject
     public DetailViewModel(@NonNull Repository repository, @NonNull Application application) {
         super(application);
-        this.repository = repository;
         currencyHistory = Transformations.map(repository.getBitcoinUsdDaily(), this::convertToEntry);
         repository.getCoinData("global", "BTC");
         this.bitcoin = repository.getBitcoinUSD();

@@ -1,8 +1,8 @@
-package com.example.basics.cryptoticker.data.model.web;
+package com.example.basics.cryptoticker.data.remote;
 
-import com.example.basics.cryptoticker.data.model.pojo.CryptoHistory;
-import com.example.basics.cryptoticker.data.model.pojo.Cryptocurrency;
-import com.example.basics.cryptoticker.data.model.pojo.Ticket;
+import com.example.basics.cryptoticker.data.model.CryptoHistory;
+import com.example.basics.cryptoticker.data.model.Cryptocurrency;
+import com.example.basics.cryptoticker.data.model.Ticket;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 
-public interface IBitcoinAverageApi {
+public interface  IBitcoinAverageApi {
 
     @GET("websocket/get_ticket")
     Call<Ticket> getTicket(@Header("X-Signature") String signature);

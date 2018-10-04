@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.basics.cryptoticker.R;
-import com.example.basics.cryptoticker.data.model.pojo.News;
+import com.example.basics.cryptoticker.data.model.News;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 

@@ -1,11 +1,11 @@
-package com.example.basics.cryptoticker.viewmodel;
+package com.example.basics.cryptoticker.ui.Alarm;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
-import com.example.basics.cryptoticker.Repository;
+import com.example.basics.cryptoticker.data.Repository;
 import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
 

@@ -1,10 +1,12 @@
-package com.example.basics.cryptoticker;
+package com.example.basics.cryptoticker.ui.Alarm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 
+import com.example.basics.cryptoticker.App;
+import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
 
 public class AlarmChecker {

@@ -1,10 +1,14 @@
-package com.example.basics.cryptoticker.viewmodel;
+package com.example.basics.cryptoticker.di;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.v4.util.ArrayMap;
 
 import com.example.basics.cryptoticker.di.modules.ViewModelSubComponent;
+import com.example.basics.cryptoticker.ui.Alarm.AlarmViewModel;
+import com.example.basics.cryptoticker.ui.Detail.DetailViewModel;
+import com.example.basics.cryptoticker.ui.Main.MainActivityViewModel;
+import com.example.basics.cryptoticker.ui.News.NewsViewModel;
 
 import java.util.Map;
 import java.util.concurrent.Callable;

@@ -1,9 +1,9 @@
 package com.example.basics.cryptoticker.di.modules;
 
-import com.example.basics.cryptoticker.viewmodel.AlarmViewModel;
-import com.example.basics.cryptoticker.viewmodel.DetailViewModel;
-import com.example.basics.cryptoticker.viewmodel.MainActivityViewModel;
-import com.example.basics.cryptoticker.viewmodel.NewsViewModel;
+import com.example.basics.cryptoticker.ui.Alarm.AlarmViewModel;
+import com.example.basics.cryptoticker.ui.Detail.DetailViewModel;
+import com.example.basics.cryptoticker.ui.Main.MainActivityViewModel;
+import com.example.basics.cryptoticker.ui.News.NewsViewModel;
 
 import dagger.Subcomponent;
 

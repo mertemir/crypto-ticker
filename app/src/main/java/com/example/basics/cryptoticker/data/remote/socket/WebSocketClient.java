@@ -1,6 +1,6 @@
 package com.example.basics.cryptoticker.data.remote.socket;
 
-import com.example.basics.cryptoticker.AlarmChecker;
+import com.example.basics.cryptoticker.ui.Alarm.AlarmChecker;
 import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.data.Parser;
 import com.google.gson.JsonElement;

@@ -1,6 +1,6 @@
 package com.example.basics.cryptoticker.di.modules;
 
-import com.example.basics.cryptoticker.ui.activity.MainActivity;
+import com.example.basics.cryptoticker.ui.Main.MainActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

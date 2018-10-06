@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.ui.fragment;
+package com.example.basics.cryptoticker.ui.Detail;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.databinding.FragmentDetailBinding;
 import com.example.basics.cryptoticker.di.qualifiers.Injectible;
-import com.example.basics.cryptoticker.viewmodel.DetailViewModel;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.LineData;

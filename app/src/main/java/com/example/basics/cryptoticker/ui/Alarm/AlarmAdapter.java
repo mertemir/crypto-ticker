@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.ui.adapter;
+package com.example.basics.cryptoticker.ui.Alarm;
 
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;

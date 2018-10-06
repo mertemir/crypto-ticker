@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.ui.adapter;
+package com.example.basics.cryptoticker.ui.News;
 
 import android.content.Context;
 import android.support.v7.util.DiffUtil;

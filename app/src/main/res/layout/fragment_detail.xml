@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <variable name="viewModel" type="com.example.basics.cryptoticker.viewmodel.DetailViewModel" />
+        <variable name="viewModel" type="com.example.basics.cryptoticker.ui.Detail.DetailViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical"
-        tools:context=".ui.fragment.DetailFragment">
+        tools:context=".ui.Detail.DetailFragment">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/chart_layout"

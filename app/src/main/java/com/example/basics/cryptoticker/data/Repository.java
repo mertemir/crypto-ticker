@@ -1,9 +1,10 @@
-package com.example.basics.cryptoticker;
+package com.example.basics.cryptoticker.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
+import com.example.basics.cryptoticker.App;
 import com.example.basics.cryptoticker.data.Parser;
 import com.example.basics.cryptoticker.data.db.entity.AlarmEntity;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;

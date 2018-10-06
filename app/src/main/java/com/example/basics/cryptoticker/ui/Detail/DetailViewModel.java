@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.viewmodel;
+package com.example.basics.cryptoticker.ui.Detail;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
 import android.support.annotation.NonNull;
 
-import com.example.basics.cryptoticker.Repository;
+import com.example.basics.cryptoticker.data.Repository;
 import com.example.basics.cryptoticker.data.db.entity.CryptoEntity;
 import com.example.basics.cryptoticker.data.model.CryptoHistory;
 import com.github.mikephil.charting.data.Entry;

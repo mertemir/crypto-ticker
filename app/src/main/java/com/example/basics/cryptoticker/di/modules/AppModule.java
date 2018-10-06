@@ -7,7 +7,7 @@ import android.content.Context;
 import com.example.basics.cryptoticker.data.remote.IBitcoinAverageApi;
 import com.example.basics.cryptoticker.data.remote.NewsApi;
 import com.example.basics.cryptoticker.data.remote.socket.Authentication;
-import com.example.basics.cryptoticker.viewmodel.ViewModelFactory;
+import com.example.basics.cryptoticker.di.ViewModelFactory;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

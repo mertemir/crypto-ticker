@@ -1,4 +1,4 @@
-package com.example.basics.cryptoticker.ui.fragment;
+package com.example.basics.cryptoticker.ui.News;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 
 import com.example.basics.cryptoticker.R;
 import com.example.basics.cryptoticker.di.qualifiers.Injectible;
-import com.example.basics.cryptoticker.ui.adapter.NewsAdapter;
-import com.example.basics.cryptoticker.viewmodel.NewsViewModel;
+import com.example.basics.cryptoticker.ui.News.NewsAdapter;
+import com.example.basics.cryptoticker.ui.News.NewsViewModel;
 
 import javax.inject.Inject;
 

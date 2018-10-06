@@ -1,10 +1,10 @@
-package com.example.basics.cryptoticker.viewmodel;
+package com.example.basics.cryptoticker.ui.Main;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.support.annotation.NonNull;
 
-import com.example.basics.cryptoticker.Repository;
+import com.example.basics.cryptoticker.data.Repository;
 
 import javax.inject.Inject;
 
